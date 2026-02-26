@@ -2,42 +2,14 @@
 List all available modules
 """
 
-import json
-import os
 import sys
-
-
-def get_modules_json():
-    """Get the path to modules.json"""
-    # Try multiple possible locations
-    possible_paths = [
-        os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-            "modules.json",
-        ),
-        os.path.join(os.getcwd(), "modules.json"),
-        os.path.join(
-            os.path.dirname(
-                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            ),
-            "modules.json",
-        ),
-    ]
-
-    for path in possible_paths:
-        if os.path.exists(path):
-            return path
-
-    raise FileNotFoundError("modules.json not found. Are you in a CMakeHub project directory?")
+from cli.package_data import load_modules_json
 
 
 def list_modules(args):
     """List all available modules"""
     try:
-        modules_json_path = get_modules_json()
-
-        with open(modules_json_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        data = load_modules_json()
 
         modules = data.get("modules", [])
         categories = data.get("categories", {})

@@ -4,32 +4,9 @@ Update modules - Must call CMake to re-download modules
 
 import os
 import shutil
-import json
 import sys
 import subprocess
-
-
-def get_modules_json():
-    """Get the path to modules.json"""
-    possible_paths = [
-        os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-            "modules.json",
-        ),
-        os.path.join(os.getcwd(), "modules.json"),
-        os.path.join(
-            os.path.dirname(
-                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            ),
-            "modules.json",
-        ),
-    ]
-
-    for path in possible_paths:
-        if os.path.exists(path):
-            return path
-
-    raise FileNotFoundError("modules.json not found. Are you in a CMakeHub project directory?")
+from cli.package_data import load_modules_json, get_loader_path
 
 
 def get_cache_dir():
@@ -43,33 +20,6 @@ def get_cache_dir():
         cache_dir = os.path.join(os.environ.get("HOME", "~"), ".cmakehub", "cache")
 
     return os.path.expanduser(cache_dir)
-
-
-def get_loader_path():
-    """Get the path to loader.cmake"""
-    possible_paths = [
-        os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-            "cmake",
-            "hub",
-            "loader.cmake",
-        ),
-        os.path.join(os.getcwd(), "cmake", "hub", "loader.cmake"),
-        os.path.join(
-            os.path.dirname(
-                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            ),
-            "cmake",
-            "hub",
-            "loader.cmake",
-        ),
-    ]
-
-    for path in possible_paths:
-        if os.path.exists(path):
-            return path
-
-    raise FileNotFoundError("loader.cmake not found. Are you in a CMakeHub project directory?")
 
 
 def download_module_now(module_name, version=None):
@@ -121,12 +71,9 @@ cmakehub_use({module_name})
 def update_modules(args):
     """Update modules by clearing cache and optionally downloading"""
     try:
-        modules_json_path = get_modules_json()
+        data = load_modules_json()
         cache_dir = get_cache_dir()
         loader_path = get_loader_path()
-
-        with open(modules_json_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
 
         modules = data.get("modules", [])
 

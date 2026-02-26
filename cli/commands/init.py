@@ -5,33 +5,7 @@ Init project - Initialize a new project with CMakeHub
 import os
 import shutil
 import sys
-
-
-def get_loader_path():
-    """Get the path to loader.cmake"""
-    possible_paths = [
-        os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-            "cmake",
-            "hub",
-            "loader.cmake",
-        ),
-        os.path.join(os.getcwd(), "cmake", "hub", "loader.cmake"),
-        os.path.join(
-            os.path.dirname(
-                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            ),
-            "cmake",
-            "hub",
-            "loader.cmake",
-        ),
-    ]
-
-    for path in possible_paths:
-        if os.path.exists(path):
-            return path
-
-    raise FileNotFoundError("loader.cmake not found. Are you in a CMakeHub project directory?")
+from cli.package_data import get_loader_path
 
 
 def init_project(args):
