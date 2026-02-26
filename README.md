@@ -741,8 +741,7 @@ For complete list, see [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=caomengxuan666/CMakeHub&type=Date)](https://star-history.com/#caomengxuan666/CMakeHub&Date)
-
+[![Star History Chart](https://api.star-history.com/svg?repos=caomengxuan666/CMakeHub&type=timeline&legend=bottom-right)](https://www.star-history.com/#caomengxuan666/CMakeHub&type=timeline&legend=bottom-right)
 ---
 
 <div align="center">
