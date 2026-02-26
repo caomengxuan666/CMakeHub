@@ -90,37 +90,6 @@
       ]
     },
     {
-      "name": "bin2cpp",
-      "description": "Convert files to C++ for embedding",
-      "category": "utils",
-      "author": "end2endzone",
-      "repository": "https://github.com/end2endzone/bin2cpp.git",
-      "path": "bin2cpp.cmake",
-      "license": "MIT",
-      "stars": 200,
-      "last_updated": "2022-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.14",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "bin2cpp",
-        "embed",
-        "file",
-        "c++",
-        "binary"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
       "name": "c_standards",
       "description": "C standards configuration",
       "category": "build_optimization",
@@ -181,36 +150,6 @@
       ]
     },
     {
-      "name": "check_function",
-      "description": "Check if function exists in compiler",
-      "category": "utils",
-      "author": "jedbrown",
-      "repository": "https://github.com/jedbrown/cmake-modules.git",
-      "path": "CheckFunctionExists.cmake",
-      "license": "BSD2",
-      "stars": 50,
-      "last_updated": "2021-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "function",
-        "check",
-        "compiler",
-        "feature"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
       "name": "clang_tidy_cg",
       "description": "Clang-Tidy integration from cginternals cmake-init",
       "category": "code_quality",
@@ -260,36 +199,6 @@
         "cppcheck",
         "static-analysis",
         "linting"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "cmake_checks",
-      "description": "CMake checks cache helper modules",
-      "category": "utils",
-      "author": "polysquare",
-      "repository": "https://github.com/polysquare/cmake-checks-cache.git",
-      "path": "cmake/CheckCompilerFlag.cmake",
-      "license": "MIT",
-      "stars": 50,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "checks",
-        "compiler",
-        "cache",
-        "utility"
       ],
       "platform": [
         "windows",
@@ -809,37 +718,6 @@
       ]
     },
     {
-      "name": "embed_resources",
-      "description": "Embed resources (files) into C++ executables",
-      "category": "utils",
-      "author": "MiSo1289",
-      "repository": "https://github.com/MiSo1289/cmake-embed.git",
-      "path": "EmbedResources.cmake",
-      "license": "MIT",
-      "stars": 100,
-      "last_updated": "2023-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.17",
-      "cpp_minimum_required": "17",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "embed",
-        "resources",
-        "binary",
-        "files",
-        "embedding"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
       "name": "export_header",
       "description": "Generate template export header",
       "category": "utils",
@@ -888,36 +766,6 @@
         "assimp",
         "3d",
         "model",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "find_curl",
-      "description": "Find cURL library",
-      "category": "utils",
-      "author": "AMDmi3",
-      "repository": "https://github.com/AMDmi3/cmake-modules.git",
-      "path": "FindCURL.cmake",
-      "license": "CC0",
-      "stars": 100,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "curl",
-        "http",
-        "network",
         "find"
       ],
       "platform": [
@@ -1130,66 +978,6 @@
       ]
     },
     {
-      "name": "find_jpeg",
-      "description": "Find JPEG library",
-      "category": "utils",
-      "author": "AMDmi3",
-      "repository": "https://github.com/AMDmi3/cmake-modules.git",
-      "path": "FindJPEG.cmake",
-      "license": "CC0",
-      "stars": 100,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "jpeg",
-        "image",
-        "graphics",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "find_libevent",
-      "description": "Find libevent library",
-      "category": "utils",
-      "author": "AMDmi3",
-      "repository": "https://github.com/AMDmi3/cmake-modules.git",
-      "path": "FindLibevent.cmake",
-      "license": "CC0",
-      "stars": 100,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "libevent",
-        "network",
-        "async",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
       "name": "find_nodejs",
       "description": "Find Node.js",
       "category": "utils",
@@ -1248,36 +1036,6 @@
       ]
     },
     {
-      "name": "find_png",
-      "description": "Find PNG library",
-      "category": "utils",
-      "author": "AMDmi3",
-      "repository": "https://github.com/AMDmi3/cmake-modules.git",
-      "path": "FindPNG.cmake",
-      "license": "CC0",
-      "stars": 100,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "png",
-        "image",
-        "graphics",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
       "name": "find_sdl2",
       "description": "Find SDL2 library",
       "category": "utils",
@@ -1296,94 +1054,6 @@
         "sdl2",
         "game",
         "multimedia",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "find_sqlite",
-      "description": "Find SQLite database library",
-      "category": "utils",
-      "author": "AMDmi3",
-      "repository": "https://github.com/AMDmi3/cmake-modules.git",
-      "path": "FindSQLite3.cmake",
-      "license": "CC0",
-      "stars": 100,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "sqlite",
-        "database",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "find_vulkan",
-      "description": "Find Vulkan library",
-      "category": "utils",
-      "author": "Kitware",
-      "repository": "https://github.com/KhronosGroup/Vulkan-ValidationLayers.git",
-      "path": "cmake/FindVulkan.cmake",
-      "license": "Apache-2.0",
-      "stars": 4000,
-      "last_updated": "2023-10-01",
-      "version": "main",
-      "cmake_minimum_required": "3.18",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "vulkan",
-        "graphics",
-        "gpu",
-        "find"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "find_zlib",
-      "description": "Find zlib compression library",
-      "category": "utils",
-      "author": "AMDmi3",
-      "repository": "https://github.com/AMDmi3/cmake-modules.git",
-      "path": "FindZLIB.cmake",
-      "license": "CC0",
-      "stars": 100,
-      "last_updated": "2020-01-01",
-      "version": "master",
-      "cmake_minimum_required": "3.10",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "zlib",
-        "compression",
         "find"
       ],
       "platform": [
@@ -1631,36 +1301,6 @@
       ]
     },
     {
-      "name": "pycmake",
-      "description": "Python module version checking for CMake",
-      "category": "utils",
-      "author": "equinor",
-      "repository": "https://github.com/equinor/pycmake.git",
-      "path": "pycmake.cmake",
-      "license": "MIT",
-      "stars": 30,
-      "last_updated": "2022-05-01",
-      "version": "main",
-      "cmake_minimum_required": "3.14",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "python",
-        "module",
-        "version",
-        "check"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
       "name": "qt_helper",
       "description": "Qt integration helper",
       "category": "utils",
@@ -1739,35 +1379,6 @@
         "undefined",
         "thread",
         "memory"
-      ],
-      "platform": [
-        "windows",
-        "linux",
-        "macos",
-        "freebsd",
-        "ios",
-        "android"
-      ]
-    },
-    {
-      "name": "target_utils",
-      "description": "Target utility helpers",
-      "category": "utils",
-      "author": "cpm-cmake",
-      "repository": "https://github.com/cpm-cmake/CPM.cmake.git",
-      "path": "cmake/CPMUtils.cmake",
-      "license": "MIT",
-      "stars": 3700,
-      "last_updated": "2024-01-10",
-      "version": "master",
-      "cmake_minimum_required": "3.14",
-      "cpp_minimum_required": "",
-      "dependencies": [],
-      "conflicts": [],
-      "tags": [
-        "target",
-        "utility",
-        "helper"
       ],
       "platform": [
         "windows",
