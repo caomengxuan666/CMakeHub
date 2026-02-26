@@ -86,4 +86,3 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | qt_helper | [https://github.com/dcourtois/CMakeUtils.git](https://github.com/dcourtois/CMakeUtils.git) | dcourtois |
 | runtime_dependencies | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | sanitizers | [https://github.com/arsenm/sanitizers-cmake.git](https://github.com/arsenm/sanitizers-cmake.git) | arsenm |
-

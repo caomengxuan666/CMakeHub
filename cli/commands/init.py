@@ -10,15 +10,27 @@ import sys
 def get_loader_path():
     """Get the path to loader.cmake"""
     possible_paths = [
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'cmake', 'hub', 'loader.cmake'),
-        os.path.join(os.getcwd(), 'cmake', 'hub', 'loader.cmake'),
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), 'cmake', 'hub', 'loader.cmake'),
+        os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+            "cmake",
+            "hub",
+            "loader.cmake",
+        ),
+        os.path.join(os.getcwd(), "cmake", "hub", "loader.cmake"),
+        os.path.join(
+            os.path.dirname(
+                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            ),
+            "cmake",
+            "hub",
+            "loader.cmake",
+        ),
     ]
-    
+
     for path in possible_paths:
         if os.path.exists(path):
             return path
-    
+
     raise FileNotFoundError("loader.cmake not found. Are you in a CMakeHub project directory?")
 
 
@@ -27,31 +39,31 @@ def init_project(args):
     try:
         project_name = args.name
         project_dir = os.path.join(os.getcwd(), project_name)
-        
+
         # Check if project directory already exists
         if os.path.exists(project_dir):
             print(f"Error: Directory '{project_name}' already exists", file=sys.stderr)
             return 1
-        
+
         # Create project structure
         print(f"Initializing project: {project_name}")
         print("-" * 80)
-        
+
         # Create project directory
         os.makedirs(project_dir)
-        os.makedirs(os.path.join(project_dir, 'cmake', 'hub'))
-        os.makedirs(os.path.join(project_dir, 'src'))
-        
+        os.makedirs(os.path.join(project_dir, "cmake", "hub"))
+        os.makedirs(os.path.join(project_dir, "src"))
+
         print(f"✓ Created directory structure")
-        
+
         # Copy loader.cmake
         loader_path = get_loader_path()
-        loader_dest = os.path.join(project_dir, 'cmake', 'hub', 'loader.cmake')
+        loader_dest = os.path.join(project_dir, "cmake", "hub", "loader.cmake")
         shutil.copy(loader_path, loader_dest)
         print(f"✓ Copied loader.cmake to cmake/hub/")
-        
+
         # Create CMakeLists.txt
-        cmake_content = f'''cmake_minimum_required(VERSION 3.19)
+        cmake_content = f"""cmake_minimum_required(VERSION 3.19)
 project({project_name} VERSION 1.0.0 LANGUAGES CXX)
 
 # Set C++ standard
@@ -86,14 +98,14 @@ install(TARGETS ${{PROJECT_NAME}}
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
-'''
-        
-        with open(os.path.join(project_dir, 'CMakeLists.txt'), 'w', encoding='utf-8') as f:
+"""
+
+        with open(os.path.join(project_dir, "CMakeLists.txt"), "w", encoding="utf-8") as f:
             f.write(cmake_content)
         print(f"✓ Created CMakeLists.txt")
-        
+
         # Create main.cpp
-        main_content = f'''#include <iostream>
+        main_content = f"""#include <iostream>
 #include <string>
 
 int main(int argc, char* argv[]) {{
@@ -101,14 +113,14 @@ int main(int argc, char* argv[]) {{
     std::cout << "CMake version: " << CMAKE_VERSION << std::endl;
     return 0;
 }}
-'''
-        
-        with open(os.path.join(project_dir, 'src', 'main.cpp'), 'w', encoding='utf-8') as f:
+"""
+
+        with open(os.path.join(project_dir, "src", "main.cpp"), "w", encoding="utf-8") as f:
             f.write(main_content)
         print(f"✓ Created src/main.cpp")
-        
+
         # Create .gitignore
-        gitignore_content = '''# Build directories
+        gitignore_content = """# Build directories
 build/
 cmake-build-*/
 out/
@@ -133,14 +145,14 @@ Makefile
 # OS
 .DS_Store
 Thumbs.db
-'''
-        
-        with open(os.path.join(project_dir, '.gitignore'), 'w', encoding='utf-8') as f:
+"""
+
+        with open(os.path.join(project_dir, ".gitignore"), "w", encoding="utf-8") as f:
             f.write(gitignore_content)
         print(f"✓ Created .gitignore")
-        
+
         # Create README.md
-        readme_content = f'''# {project_name}
+        readme_content = f"""# {project_name}
 
 A C++ project initialized with CMakeHub.
 
@@ -181,12 +193,12 @@ cmakehub check sanitizers
 ## License
 
 [Your License Here]
-'''
-        
-        with open(os.path.join(project_dir, 'README.md'), 'w', encoding='utf-8') as f:
+"""
+
+        with open(os.path.join(project_dir, "README.md"), "w", encoding="utf-8") as f:
             f.write(readme_content)
         print(f"✓ Created README.md")
-        
+
         print()
         print("=" * 80)
         print(f"✅ Project '{project_name}' initialized successfully!")
@@ -202,9 +214,9 @@ cmakehub check sanitizers
         print(f"To add CMakeHub modules:")
         print(f"  cmakehub use <module_name> --append CMakeLists.txt")
         print()
-        
+
         return 0
-    
+
     except Exception as e:
         print(f"Error initializing project: {e}", file=sys.stderr)
         # Clean up if failed

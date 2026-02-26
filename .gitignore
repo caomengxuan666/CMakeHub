@@ -11,8 +11,8 @@ Makefile
 cmakehub_test_cache/
 
 # Temporary files
-temp_verify_*.cmake
 test_*.json
+temp_*.cmake
 
 # Python
 __pycache__/

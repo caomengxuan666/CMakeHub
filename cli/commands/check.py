@@ -11,30 +11,50 @@ import subprocess
 def get_modules_json():
     """Get the path to modules.json"""
     possible_paths = [
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'modules.json'),
-        os.path.join(os.getcwd(), 'modules.json'),
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), 'modules.json'),
+        os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+            "modules.json",
+        ),
+        os.path.join(os.getcwd(), "modules.json"),
+        os.path.join(
+            os.path.dirname(
+                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            ),
+            "modules.json",
+        ),
     ]
-    
+
     for path in possible_paths:
         if os.path.exists(path):
             return path
-    
+
     raise FileNotFoundError("modules.json not found. Are you in a CMakeHub project directory?")
 
 
 def get_loader_path():
     """Get the path to loader.cmake"""
     possible_paths = [
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'cmake', 'hub', 'loader.cmake'),
-        os.path.join(os.getcwd(), 'cmake', 'hub', 'loader.cmake'),
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), 'cmake', 'hub', 'loader.cmake'),
+        os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+            "cmake",
+            "hub",
+            "loader.cmake",
+        ),
+        os.path.join(os.getcwd(), "cmake", "hub", "loader.cmake"),
+        os.path.join(
+            os.path.dirname(
+                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            ),
+            "cmake",
+            "hub",
+            "loader.cmake",
+        ),
     ]
-    
+
     for path in possible_paths:
         if os.path.exists(path):
             return path
-    
+
     raise FileNotFoundError("loader.cmake not found. Are you in a CMakeHub project directory?")
 
 
@@ -43,41 +63,41 @@ def check_compatibility(args):
     try:
         modules_json_path = get_modules_json()
         loader_path = get_loader_path()
-        
-        with open(modules_json_path, 'r', encoding='utf-8') as f:
+
+        with open(modules_json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-        
-        modules = data.get('modules', [])
-        
+
+        modules = data.get("modules", [])
+
         # Find the module
         module = None
         for m in modules:
-            if m['name'] == args.module:
+            if m["name"] == args.module:
                 module = m
                 break
-        
+
         if not module:
             print(f"Error: Module '{args.module}' not found", file=sys.stderr)
             return 1
-        
+
         print("=" * 80)
         print(f"Compatibility Check: {module['name']}")
         print("=" * 80)
         print()
-        
+
         # Check platform (can be done in Python)
-        platform = module.get('platform', [])
+        platform = module.get("platform", [])
         print("Platform Support:")
-        if os.name == 'nt':
-            current_platform = 'windows'
-        elif sys.platform == 'darwin':
-            current_platform = 'macos'
+        if os.name == "nt":
+            current_platform = "windows"
+        elif sys.platform == "darwin":
+            current_platform = "macos"
         else:
-            current_platform = 'linux'
-        
+            current_platform = "linux"
+
         print(f"  Required: {', '.join(platform) or 'All platforms'}")
         print(f"  Current:  {current_platform}")
-        
+
         if platform and current_platform in platform:
             print(f"  Status:   ✓ Supported")
         elif platform:
@@ -86,21 +106,21 @@ def check_compatibility(args):
         else:
             print(f"  Status:   ✓ Platform-independent")
         print()
-        
+
         # Check dependencies (can be done in Python)
-        dependencies = module.get('dependencies', [])
+        dependencies = module.get("dependencies", [])
         print("Dependencies:")
         if dependencies:
             for dep in dependencies:
-                dep_found = any(m['name'] == dep for m in modules)
+                dep_found = any(m["name"] == dep for m in modules)
                 status = "✓ Available" if dep_found else "⚠ Not found in index"
                 print(f"  - {dep}: {status}")
         else:
             print("  None")
         print()
-        
+
         # Check conflicts (can be done in Python)
-        conflicts = module.get('conflicts', [])
+        conflicts = module.get("conflicts", [])
         print("Conflicts:")
         if conflicts:
             for conflict in conflicts:
@@ -108,13 +128,13 @@ def check_compatibility(args):
         else:
             print("  None")
         print()
-        
+
         # Check CMake and C++ versions using CMake (MUST use CMake for version comparison)
         print("Version Checking (using CMake):")
         print("-" * 80)
-        
+
         # Create temporary CMake script to check compatibility
-        cmake_script = f'''
+        cmake_script = f"""
 cmake_minimum_required(VERSION 3.19)
 
 # Get module info
@@ -153,24 +173,20 @@ if(CPP_MIN_REQUIRED)
 else()
     message(STATUS "  Status:   ✓ No requirement")
 endif()
-'''
-        
+"""
+
         # Write temporary script
-        temp_script = os.path.join(os.path.dirname(__file__), 'temp_check_compatibility.cmake')
-        with open(temp_script, 'w') as f:
+        temp_script = os.path.join(os.path.dirname(__file__), "temp_check_compatibility.cmake")
+        with open(temp_script, "w") as f:
             f.write(cmake_script)
-        
+
         try:
             # Run CMake to check compatibility
-            result = subprocess.run(
-                ['cmake', '-P', temp_script],
-                capture_output=True,
-                text=True
-            )
-            
+            result = subprocess.run(["cmake", "-P", temp_script], capture_output=True, text=True)
+
             # Print CMake output
             print(result.stdout)
-            
+
             if result.returncode != 0:
                 print(f"Status: ✗ Compatibility check failed", file=sys.stderr)
                 print(f"Error: {result.stderr}", file=sys.stderr)
@@ -178,14 +194,14 @@ endif()
             else:
                 print()
                 print("Status: ✓ Module is compatible")
-                
+
         finally:
             # Clean up temporary file
             if os.path.exists(temp_script):
                 os.remove(temp_script)
-        
+
         return 0
-    
+
     except FileNotFoundError as e:
         print(f"Error: {e}", file=sys.stderr)
         return 1
