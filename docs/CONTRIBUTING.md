@@ -127,7 +127,19 @@ We accept modules in the following categories:
    cmake -P module.cmake
    ```
 
-2. **Update modules.json**
+2. **Add the module using the helper script**
+   ```bash
+   python scripts/add_module.py \
+     --name your_module \
+     --repo https://github.com/user/repo.git \
+     --path module.cmake \
+     --category utils \
+     --description "Brief description" \
+     --author "Author Name" \
+     --license MIT
+   ```
+
+   Or manually update `modules.json`:
    ```json
    {
      "name": "your_module",
@@ -144,7 +156,8 @@ We accept modules in the following categories:
      "cpp_minimum_required": "",
      "dependencies": [],
      "conflicts": [],
-     "tags": ["tag1", "tag2"]
+     "tags": ["tag1", "tag2"],
+     "platform": ["windows", "linux", "macos"]
    }
    ```
 
@@ -157,15 +170,31 @@ We accept modules in the following categories:
    }
    ```
 
-4. **Test the module**
+4. **Validate the module**
    ```bash
-   python run_single_test.py test_loader_basic
+   # Validate module structure
+   python scripts/validate_modules.py
+
+   # Verify module path is accessible
+   cmake -P tests/verify_modules.cmake
    ```
 
-5. **Submit a Pull Request**
+5. **Generate documentation**
+   ```bash
+   # Generate module documentation
+   python scripts/generate_docs.py
+   ```
+
+6. **Test the module**
+   ```bash
+   python tests/run_single_test.py test_loader_basic
+   ```
+
+7. **Submit a Pull Request**
    - Include module name in PR title
    - Provide module documentation link
    - Explain why this module should be included
+   - Ensure CI passes
 
 ### Module Metadata Fields
 
@@ -186,6 +215,7 @@ We accept modules in the following categories:
 | `dependencies` | Yes | Array of module dependencies |
 | `conflicts` | Yes | Array of conflicting modules |
 | `tags` | No | Array of search tags |
+| `platform` | Yes | Supported platforms (windows, linux, macos, etc.) |
 
 ---
 
@@ -195,13 +225,23 @@ We accept modules in the following categories:
 
 ```bash
 # Run all tests
-python run_tests.py
+python tests/run_tests.py
 
 # Run specific test
-python run_single_test.py test_loader_basic
+python tests/run_single_test.py test_loader_basic
+python tests/run_single_test.py test_cache
+python tests/run_single_test.py test_version_check
+python tests/run_single_test.py test_dependencies
+python tests/run_single_test.py test_conflicts
 
-# Verify module paths
-cmake -P verify_modules.cmake
+# Verify module paths (CI will fail if invalid)
+cmake -P tests/verify_modules.cmake
+
+# Test new features
+cmake -P tests/test_new_features.cmake
+
+# Validate all modules
+python scripts/validate_modules.py
 ```
 
 ### Writing Tests
@@ -232,6 +272,7 @@ message(STATUS "Test passed!")
 - **test_version_check**: Version checking
 - **test_dependencies**: Dependency resolution
 - **test_conflicts**: Conflict detection
+- **test_new_features**: New features testing (config penetration, version selection, etc.)
 
 ---
 
