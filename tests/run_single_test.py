@@ -45,7 +45,7 @@ def main():
     
     test_name = sys.argv[1]
     script_dir = Path(__file__).parent.resolve()
-    test_script = script_dir / "tests" / test_name / "run.cmake"
+    test_script = script_dir / test_name / "run.cmake"
     
     if not test_script.exists():
         print_error(f"Test script not found: {test_script}")
