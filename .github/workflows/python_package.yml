@@ -8,16 +8,12 @@ on:
       - 'v*'
 
 jobs:
-  build_wheels:
-    name: Build wheels on ${{ matrix.os }}
+  build:
+    name: Build package on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-    env:
-      CIBW_SKIP: "*-win32 *-manylinux_i686 *-linux_i686 pp*"
-      CIBW_BUILD_VERBOSITY: 1
-      CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
 
     steps:
       - uses: actions/checkout@v4
@@ -26,59 +22,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', 'pyproject.toml', 'setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install build dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install build cibuildwheel
-
-      - name: Debug information
-        shell: bash
-        run: |
-          echo "Python version:"
-          python --version
-          echo "Directory structure:"
-          ls -la
-          echo "pyproject.toml content:"
-          cat pyproject.toml
-          echo "setup.py content:"
-          cat setup.py
-
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.16.5
-        with:
-          package-dir: .
-
-      - name: Check wheel metadata
-        run: |
-          python -m pip install twine
-          python -m twine check wheelhouse/*.whl
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
-          path: ./wheelhouse/*.whl
-
-  build_sdist:
-    name: Build source distribution
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', 'pyproject.toml', 'setup.py') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml', 'setup.py') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -100,18 +44,21 @@ jobs:
           echo "Directory structure:"
           ls -la
 
-      - name: Build sdist
+      - name: Build wheel and sdist
         run: |
-          python -m build --sdist
-          python -m twine check dist/*.tar.gz
+          python -m build --wheel --sdist
+
+      - name: Check package metadata
+        run: |
+          python -m twine check dist/*
 
       - uses: actions/upload-artifact@v4
         with:
-          name: cibw-sdist
-          path: dist/*.tar.gz
+          name: package-${{ matrix.os }}
+          path: dist/*
 
   upload_pypi:
-    needs: [build_wheels, build_sdist]
+    needs: build
     environment: pypi
     runs-on: ubuntu-latest
     permissions:
@@ -122,13 +69,13 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', 'pyproject.toml', 'setup.py') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml', 'setup.py') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - uses: actions/download-artifact@v4
         with:
-          pattern: cibw-*
+          pattern: package-*
           path: dist
           merge-multiple: true
 
@@ -139,12 +86,6 @@ jobs:
       - name: Verify package metadata
         run: |
           python -m twine check dist/*
-
-      - name: Filter out unsupported wheels
-        run: |
-          find dist -name "*linux_i686.whl" -delete
-          echo "Remaining files:"
-          ls -la dist/
 
       - name: Publish to Test PyPI
         run: |
