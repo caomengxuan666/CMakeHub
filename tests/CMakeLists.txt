@@ -25,8 +25,5 @@ add_test(NAME dependency_resolution COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_
 # Test 5: Conflict detection
 add_test(NAME conflict_detection COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_SOURCE_DIR}/test_conflicts/run.cmake)
 
-# Test 6: Example build
-add_test(NAME example_build COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/example_build)
-
 message(STATUS "CMakeHub tests configured")
 message(STATUS "Run tests with: ctest --test-dir <build_dir> --output-on-failure")

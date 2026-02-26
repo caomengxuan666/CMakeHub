@@ -57,15 +57,15 @@ def check_required_files():
     for file in REQUIRED_FILES:
         if not os.path.exists(file):
             missing.append(file)
-            print(f"  {Colors.RED}✗{Colors.RESET} Missing: {file}")
+            print(f"  {Colors.RED}[X]{Colors.RESET} Missing: {file}")
         else:
-            print(f"  {Colors.GREEN}✓{Colors.RESET} Found: {file}")
+            print(f"  {Colors.GREEN}[OK]{Colors.RESET} Found: {file}")
     
     if missing:
         print(f"\n{Colors.RED}Missing {len(missing)} required files!{Colors.RESET}")
         return False
     else:
-        print(f"{Colors.GREEN}✓ All required files present{Colors.RESET}")
+        print(f"{Colors.GREEN}[OK] All required files present{Colors.RESET}")
         return True
 
 def check_required_dirs():
@@ -76,15 +76,15 @@ def check_required_dirs():
     for dir_path in REQUIRED_DIRS:
         if not os.path.exists(dir_path):
             missing.append(dir_path)
-            print(f"  {Colors.RED}✗{Colors.RESET} Missing: {dir_path}/")
+            print(f"  {Colors.RED}[X]{Colors.RESET} Missing: {dir_path}/")
         else:
-            print(f"  {Colors.GREEN}✓{Colors.RESET} Found: {dir_path}/")
+            print(f"  {Colors.GREEN}[OK]{Colors.RESET} Found: {dir_path}/")
     
     if missing:
         print(f"\n{Colors.RED}Missing {len(missing)} required directories!{Colors.RESET}")
         return False
     else:
-        print(f"{Colors.GREEN}✓ All required directories present{Colors.RESET}")
+        print(f"{Colors.GREEN}[OK] All required directories present{Colors.RESET}")
         return True
 
 def check_forbidden_files():
@@ -98,14 +98,14 @@ def check_forbidden_files():
         for file in root.glob(pattern):
             if file.is_file() or file.is_dir():
                 found.append(str(file))
-                print(f"  {Colors.YELLOW}⚠{Colors.RESET} Found: {file}")
+                print(f"  {Colors.YELLOW}[!]{Colors.RESET} Found: {file}")
     
     if found:
         print(f"\n{Colors.YELLOW}Found {len(found)} files that should be removed:{Colors.RESET}")
         print(f"  {Colors.YELLOW}Run: git clean -fdx{Colors.RESET}")
         return False
     else:
-        print(f"{Colors.GREEN}✓ No forbidden files found{Colors.RESET}")
+        print(f"{Colors.GREEN}[OK] No forbidden files found{Colors.RESET}")
         return True
 
 def check_file_content():
@@ -120,9 +120,9 @@ def check_file_content():
         content = readme_path.read_text()
         if 'yourname' in content:
             issues.append("README.md still contains 'yourname' placeholder")
-            print(f"  {Colors.RED}✗{Colors.RESET} README.md contains 'yourname' placeholder")
+            print(f"  {Colors.RED}[X]{Colors.RESET} README.md contains 'yourname' placeholder")
         else:
-            print(f"  {Colors.GREEN}✓{Colors.RESET} README.md - no placeholders found")
+            print(f"  {Colors.GREEN}[OK]{Colors.RESET} README.md - no placeholders found")
     
     # Check CONTRIBUTING.md for placeholders
     contrib_path = Path('docs/CONTRIBUTING.md')
@@ -130,9 +130,9 @@ def check_file_content():
         content = contrib_path.read_text()
         if 'yourname' in content:
             issues.append("docs/CONTRIBUTING.md still contains 'yourname' placeholder")
-            print(f"  {Colors.RED}✗{Colors.RESET} docs/CONTRIBUTING.md contains 'yourname' placeholder")
+            print(f"  {Colors.RED}[X]{Colors.RESET} docs/CONTRIBUTING.md contains 'yourname' placeholder")
         else:
-            print(f"  {Colors.GREEN}✓{Colors.RESET} docs/CONTRIBUTING.md - no placeholders found")
+            print(f"  {Colors.GREEN}[OK]{Colors.RESET} docs/CONTRIBUTING.md - no placeholders found")
     
     # Check CI workflow for placeholders
     ci_path = Path('.github/workflows/ci.yml')
@@ -140,9 +140,9 @@ def check_file_content():
         content = ci_path.read_text()
         if 'yourname' in content:
             issues.append(".github/workflows/ci.yml still contains 'yourname' placeholder")
-            print(f"  {Colors.RED}✗{Colors.RESET} CI workflow contains 'yourname' placeholder")
+            print(f"  {Colors.RED}[X]{Colors.RESET} CI workflow contains 'yourname' placeholder")
         else:
-            print(f"  {Colors.GREEN}✓{Colors.RESET} CI workflow - no placeholders found")
+            print(f"  {Colors.GREEN}[OK]{Colors.RESET} CI workflow - no placeholders found")
     
     if issues:
         print(f"\n{Colors.RED}Found {len(issues)} placeholder issues!{Colors.RESET}")
@@ -150,7 +150,7 @@ def check_file_content():
             print(f"  {Colors.RED}  - {issue}{Colors.RESET}")
         return False
     else:
-        print(f"{Colors.GREEN}✓ All placeholders replaced{Colors.RESET}")
+        print(f"{Colors.GREEN}[OK] All placeholders replaced{Colors.RESET}")
         return True
 
 def main():
@@ -166,7 +166,7 @@ def main():
     print(f"\n{Colors.BOLD}{Colors.BLUE}=== Summary ==={Colors.RESET}")
     
     if all(results):
-        print(f"{Colors.GREEN}{Colors.BOLD}✓ All checks passed! Ready for release.{Colors.RESET}")
+        print(f"{Colors.GREEN}{Colors.BOLD}[OK] All checks passed! Ready for release.{Colors.RESET}")
         print(f"\n{Colors.BLUE}Next steps:{Colors.RESET}")
         print(f"  1. Review changes: {Colors.YELLOW}git status{Colors.RESET}")
         print(f"  2. Commit changes: {Colors.YELLOW}git add . && git commit -m 'Prepare for v0.1.0 release'{Colors.RESET}")
@@ -175,7 +175,7 @@ def main():
         print(f"  5. Create Draft Release on GitHub")
         return 0
     else:
-        print(f"{Colors.RED}{Colors.BOLD}✗ Some checks failed! Please fix the issues above.{Colors.RESET}")
+        print(f"{Colors.RED}{Colors.BOLD}[X] Some checks failed! Please fix the issues above.{Colors.RESET}")
         return 1
 
 if __name__ == '__main__':

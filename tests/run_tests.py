@@ -27,11 +27,11 @@ def print_header(text):
 
 def print_success(text):
     """Print success message"""
-    print(f"{Colors.GREEN}✓ {text}{Colors.RESET}")
+    print(f"{Colors.GREEN}[PASS] {text}{Colors.RESET}")
 
 def print_error(text):
     """Print error message"""
-    print(f"{Colors.RED}✗ {text}{Colors.RESET}")
+    print(f"{Colors.RED}[FAIL] {text}{Colors.RESET}")
 
 def print_info(text):
     """Print info message"""

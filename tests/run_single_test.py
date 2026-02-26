@@ -24,10 +24,12 @@ def print_header(text):
     print(f"{Colors.BLUE}{Colors.BOLD}{'=' * 50}{Colors.RESET}\n")
 
 def print_success(text):
-    print(f"{Colors.GREEN}✓ {text}{Colors.RESET}")
+    # Use ASCII-compatible characters for Windows
+    print(f"{Colors.GREEN}[PASS] {text}{Colors.RESET}")
 
 def print_error(text):
-    print(f"{Colors.RED}✗ {text}{Colors.RESET}")
+    # Use ASCII-compatible characters for Windows
+    print(f"{Colors.RED}[FAIL] {text}{Colors.RESET}")
 
 def print_info(text):
     print(f"  {text}")
