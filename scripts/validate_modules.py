@@ -151,7 +151,9 @@ def validate_all_modules(modules_json_path):
         print("✓ All modules are valid and accessible")
         return 0
     else:
-        print("✗ Some modules have issues")
+        print(f"✗ Validation failed: {len(modules)} total, {valid_count} valid structure, {accessible_count} accessible")
+        if accessible_count < len(modules):
+            print(f"  ⚠️  {len(modules) - accessible_count} modules have inaccessible files")
         return 1
 
 
