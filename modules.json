@@ -1418,6 +1418,204 @@
         "ios",
         "android"
       ]
+    },
+    {
+      "name": "polly",
+      "description": "Collection of CMake toolchain files for cross-platform builds",
+      "category": "platform",
+      "author": "ruslo",
+      "repository": "https://github.com/ruslo/polly.git",
+      "path": "CMakeLists.txt",
+      "license": "BSD2",
+      "stars": 2000,
+      "last_updated": "2023-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.15",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "toolchain",
+        "cross-platform",
+        "ios",
+        "android",
+        "sanitizers"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "name": "cmake-check",
+      "description": "Static analysis for CMake files",
+      "category": "code_quality",
+      "author": "DaelDe",
+      "repository": "https://github.com/DaelDe/cmake_check.git",
+      "path": "cmake_check.py",
+      "license": "MIT",
+      "stars": 100,
+      "last_updated": "2020-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.0",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "static-analysis",
+        "linting",
+        "cmake"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd"
+      ]
+    },
+    {
+      "name": "cmake-lint",
+      "description": "Check for coding style issues in CMake files",
+      "category": "code_quality",
+      "author": "richq",
+      "repository": "https://github.com/richq/cmake-lint.git",
+      "path": "cmakelint/main.py",
+      "license": "Apache-2.0",
+      "stars": 500,
+      "last_updated": "2022-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.0",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "style",
+        "linting",
+        "cmake"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd"
+      ]
+    },
+    {
+      "name": "iwyu-target-cmake",
+      "description": "Include-what-you-use integration for CMake targets",
+      "category": "code_quality",
+      "author": "polysquare",
+      "repository": "https://github.com/polysquare/iwyu-target-cmake.git",
+      "path": "iwyu.cmake",
+      "license": "MIT",
+      "stars": 300,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.5",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "iwyu",
+        "include",
+        "static-analysis",
+        "headers"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd"
+      ]
+    },
+    {
+      "name": "ucm",
+      "description": "Unified compiler and linker flags management",
+      "category": "build_optimization",
+      "author": "ruslo",
+      "repository": "https://github.com/ruslo/ucm.git",
+      "path": "ucm.cmake",
+      "license": "MIT",
+      "stars": 400,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "compiler-flags",
+        "linker-flags",
+        "optimization"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd"
+      ]
+    },
+    {
+      "name": "sugar",
+      "description": "CMake tools for collecting sources and generating groups",
+      "category": "utils",
+      "author": "ruslo",
+      "repository": "https://github.com/ruslo/sugar.git",
+      "path": "sugar.cmake",
+      "license": "BSD2",
+      "stars": 300,
+      "last_updated": "2020-02-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "sources",
+        "groups",
+        "utilities",
+        "helpers"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "name": "coveralls-cmake",
+      "description": "Coveralls JSON coverage generator and uploader",
+      "category": "testing",
+      "author": "JoakimSoderberg",
+      "repository": "https://github.com/JoakimSoderberg/coveralls-cmake.git",
+      "path": "coveralls.cmake",
+      "license": "MIT",
+      "stars": 800,
+      "last_updated": "2019-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.5",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "coverage",
+        "coveralls",
+        "testing",
+        "ci"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd"
+      ]
     }
   ],
   "categories": {
