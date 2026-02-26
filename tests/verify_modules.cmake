@@ -6,8 +6,11 @@ cmake_minimum_required(VERSION 3.19)
 message(STATUS "=== CMakeHub Module Path Verification ===")
 message(STATUS "")
 
-# Read modules.json
-file(READ "${CMAKE_CURRENT_LIST_DIR}/modules.json" index_content)
+# Get root directory (tests/../)
+get_filename_component(ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
+
+# Read modules.json from root directory
+file(READ "${ROOT_DIR}/modules.json" index_content)
 string(JSON modules_array GET "${index_content}" modules)
 string(JSON modules_length LENGTH "${modules_array}")
 
@@ -48,13 +51,13 @@ foreach(index RANGE ${max_index})
     list(GET download_status 0 status_code)
 
     if(status_code EQUAL 0)
-        message(STATUS "  Result: ✓ VALID")
+        message(STATUS "  Result: [OK] VALID")
         math(EXPR valid_count "${valid_count} + 1")
         # Clean up
         file(REMOVE "${CMAKE_CURRENT_BINARY_DIR}/temp_verify_${module_name}.cmake")
     else()
-        message(STATUS "  Result: ✗ INVALID (status: ${status_code})")
-        math(EXPR invalid_count "${invalid_count} + 1")
+        message(STATUS "  Result: [X] INVALID (status: ${status_code})")
+        math(EXPR invalid_count "${invalid_count} + 1}")
     endif()
 
     message(STATUS "")
