@@ -6,12 +6,12 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 
 | License | Module Count |
 |---------|--------------|
-| Apache-2.0 | 3 |
+| Apache-2.0 | 2 |
 | BSD2 | 2 |
 | BSD3 | 1 |
 | BSL-1.0 | 1 |
 | Boost | 3 |
-| MIT | 45 |
+| MIT | 43 |
 
 ## Detailed Module List
 
@@ -21,14 +21,13 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 |--------|-----------|--------|
 | c_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | cpp_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
-| cmake-lint | [https://github.com/richq/cmake-lint.git](https://github.com/richq/cmake-lint.git) | richq |
 
 ### BSD2
 
 | Module | Repository | Author |
 |--------|-----------|--------|
-| polly | [https://github.com/ruslo/polly.git](https://github.com/ruslo/polly.git) | ruslo |
 | sugar | [https://github.com/ruslo/sugar.git](https://github.com/ruslo/sugar.git) | ruslo |
+| ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
 
 ### BSD3
 
@@ -70,7 +69,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | coverage_cg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | cpm | [https://github.com/cpm-cmake/CPM.cmake.git](https://github.com/cpm-cmake/CPM.cmake.git) | cpm-cmake |
 | cppcheck_cg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
-| cmake-check | [https://github.com/DaelDe/cmake_check.git](https://github.com/DaelDe/cmake_check.git) | DaelDe |
 | cuda | [https://github.com/CLIUtils/cmake.git](https://github.com/CLIUtils/cmake.git) | CLIUtils |
 | dependency_graph | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | doctest | [https://github.com/doctest/doctest.git](https://github.com/doctest/doctest.git) | doctest |
@@ -92,7 +90,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | glsl_shaders | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | iwyu-target-cmake | [https://github.com/polysquare/iwyu-target-cmake.git](https://github.com/polysquare/iwyu-target-cmake.git) | polysquare |
 | install_helpers | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
-| ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
 | lto_optimization | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | precompiled_header | [https://github.com/larsch/cmake-precompiled-header.git](https://github.com/larsch/cmake-precompiled-header.git) | larsch |
 | qt_helper | [https://github.com/dcourtois/CMakeUtils.git](https://github.com/dcourtois/CMakeUtils.git) | dcourtois |

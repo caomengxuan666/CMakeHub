@@ -94,6 +94,12 @@ def main():
         action="store_true",
         help="Skip git operations (for testing)"
     )
+    parser.add_argument(
+        "-y",
+        "--yes",
+        action="store_true",
+        help="Skip confirmation prompt"
+    )
     
     args = parser.parse_args()
     
@@ -119,10 +125,11 @@ def main():
     print(f"New version: {new_version}")
     
     # Confirm
-    response = input(f"\nRelease version {new_version}? (y/N): ")
-    if response.lower() != "y":
-        print("Cancelled")
-        sys.exit(0)
+    if not args.yes:
+        response = input(f"\nRelease version {new_version}? (y/N): ")
+        if response.lower() != "y":
+            print("Cancelled")
+            sys.exit(0)
     
     # Update version in pyproject.toml
     update_version(new_version)
@@ -142,6 +149,28 @@ def main():
         run_command("python -m twine check dist/*")
         
         print("\n✅ Build successful!")
+    
+    # Validate modules before pushing
+    print("\n" + "=" * 80)
+    print("Validating modules...")
+    print("=" * 80)
+    
+    result = subprocess.run(
+        [sys.executable, "scripts/validate_modules.py"],
+        capture_output=True,
+        text=True
+    )
+    
+    if result.returncode != 0:
+        print("\n❌ Module validation failed!")
+        print(result.stdout)
+        print(result.stderr)
+        print("\n⚠️  Release cancelled due to validation errors.")
+        print("Please fix the validation errors before releasing.")
+        sys.exit(1)
+    
+    print(result.stdout)
+    print("\n✅ All modules validated successfully!")
     
     # Git operations
     if not args.skip_git:
