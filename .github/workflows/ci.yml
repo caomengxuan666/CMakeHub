@@ -42,32 +42,32 @@ jobs:
     
     - name: Run loader tests
       run: |
-        python run_single_test.py test_loader_basic
+        python tests/run_single_test.py test_loader_basic
     
     - name: Run cache tests
       run: |
-        python run_single_test.py test_cache
+        python tests/run_single_test.py test_cache
     
     - name: Run version check tests
       run: |
-        python run_single_test.py test_version_check
+        python tests/run_single_test.py test_version_check
     
     - name: Run dependency tests
       run: |
-        python run_single_test.py test_dependencies
+        python tests/run_single_test.py test_dependencies
     
     - name: Run conflict tests
       run: |
-        python run_single_test.py test_conflicts
+        python tests/run_single_test.py test_conflicts
     
     - name: Run all tests
       run: |
-        python run_tests.py
+        python tests/run_tests.py
       continue-on-error: true
     
     - name: Verify module paths
       run: |
-        cmake -P verify_modules.cmake
+        cmake -P tests/verify_modules.cmake
       continue-on-error: true
 
   lint:
