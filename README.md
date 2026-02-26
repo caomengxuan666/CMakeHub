@@ -195,14 +195,14 @@ Run the test suite:
 
 ```bash
 # Run all tests
-python run_tests.py
+python tests/run_tests.py
 
 # Run specific test
-python run_single_test.py test_loader_basic
-python run_single_test.py test_cache
-python run_single_test.py test_version_check
-python run_single_test.py test_dependencies
-python run_single_test.py test_conflicts
+python tests/run_single_test.py test_loader_basic
+python tests/run_single_test.py test_cache
+python tests/run_single_test.py test_version_check
+python tests/run_single_test.py test_dependencies
+python tests/run_single_test.py test_conflicts
 ```
 
 ---
@@ -289,7 +289,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
 
 ---
 

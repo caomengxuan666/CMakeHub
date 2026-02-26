@@ -23,11 +23,11 @@ REQUIRED_FILES = [
     'LICENSE',
     'modules.json',
     'README.md',
-    'CONTRIBUTING.md',
-    'RELEASE_CHECKLIST.md',
-    'run_tests.py',
-    'run_single_test.py',
-    'verify_modules.cmake',
+    'docs/CONTRIBUTING.md',
+    'docs/RELEASE_CHECKLIST.md',
+    'tests/run_tests.py',
+    'tests/run_single_test.py',
+    'tests/verify_modules.cmake',
     '.gitignore',
 ]
 
@@ -35,6 +35,8 @@ REQUIRED_DIRS = [
     'cmake/hub',
     'examples/basic',
     'tests',
+    'scripts',
+    'docs',
     '.github/workflows',
 ]
 
@@ -123,14 +125,14 @@ def check_file_content():
             print(f"  {Colors.GREEN}✓{Colors.RESET} README.md - no placeholders found")
     
     # Check CONTRIBUTING.md for placeholders
-    contrib_path = Path('CONTRIBUTING.md')
+    contrib_path = Path('docs/CONTRIBUTING.md')
     if contrib_path.exists():
         content = contrib_path.read_text()
         if 'yourname' in content:
-            issues.append("CONTRIBUTING.md still contains 'yourname' placeholder")
-            print(f"  {Colors.RED}✗{Colors.RESET} CONTRIBUTING.md contains 'yourname' placeholder")
+            issues.append("docs/CONTRIBUTING.md still contains 'yourname' placeholder")
+            print(f"  {Colors.RED}✗{Colors.RESET} docs/CONTRIBUTING.md contains 'yourname' placeholder")
         else:
-            print(f"  {Colors.GREEN}✓{Colors.RESET} CONTRIBUTING.md - no placeholders found")
+            print(f"  {Colors.GREEN}✓{Colors.RESET} docs/CONTRIBUTING.md - no placeholders found")
     
     # Check CI workflow for placeholders
     ci_path = Path('.github/workflows/ci.yml')
