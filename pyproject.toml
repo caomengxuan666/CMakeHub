@@ -36,6 +36,9 @@ Repository = "https://github.com/caomengxuan666/CMakeHub"
 [project.scripts]
 cmakehub = "cli.main:main"
 
+[tool.setuptools]
+license-files = []
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["cli*"]

@@ -24,6 +24,8 @@ venv/
 env/
 ENV/
 .venv
+dist/
+cmakehub.egg-info/
 
 # IDE
 .vscode/
