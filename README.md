@@ -8,6 +8,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![CMake](https://img.shields.io/badge/CMake-3.19+-blue.svg)](https://cmake.org)
 [![Modules](https://img.shields.io/badge/Modules-48-green.svg)](modules.json)
+[![PyPI](https://img.shields.io/badge/PyPI-cmakehub-blue.svg)](https://pypi.org/project/cmakehub)
 
 *A centralized repository for discovering, selecting, and integrating third-party CMake modules.*
 
@@ -62,18 +63,16 @@ cd CMakeHub
 git submodule add https://github.com/caomengxuan666/CMakeHub.git cmake/cmakehub
 ```
 
-#### Option 2: Install CLI Tool (Optional)
+#### Option 2: Install CLI Tool (Recommended)
 
 ```bash
-# Clone CMakeHub
+# Install CLI tool from PyPI (requires Python 3.6+)
+pip install cmakehub
+
+# Or clone repository and install locally
 git clone https://github.com/caomengxuan666/CMakeHub.git
 cd CMakeHub
-
-# Install CLI tool (requires Python 3.6+)
 pip install -e .
-
-# Or install globally
-python setup.py install
 ```
 
 After installation, you can use the CLI tool:
