@@ -6,13 +6,11 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 
 | License | Module Count |
 |---------|--------------|
-| Apache-2.0 | 3 |
-| BSD2 | 1 |
+| Apache-2.0 | 2 |
 | BSD3 | 1 |
 | BSL-1.0 | 1 |
 | Boost | 3 |
-| CC0 | 6 |
-| MIT | 43 |
+| MIT | 41 |
 
 ## Detailed Module List
 
@@ -22,13 +20,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 |--------|-----------|--------|
 | c_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | cpp_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
-| find_vulkan | [https://github.com/KhronosGroup/Vulkan-ValidationLayers.git](https://github.com/KhronosGroup/Vulkan-ValidationLayers.git) | Kitware |
-
-### BSD2
-
-| Module | Repository | Author |
-|--------|-----------|--------|
-| check_function | [https://github.com/jedbrown/cmake-modules.git](https://github.com/jedbrown/cmake-modules.git) | jedbrown |
 
 ### BSD3
 
@@ -50,17 +41,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | launchers | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
 | use_folders | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
 
-### CC0
-
-| Module | Repository | Author |
-|--------|-----------|--------|
-| find_curl | [https://github.com/AMDmi3/cmake-modules.git](https://github.com/AMDmi3/cmake-modules.git) | AMDmi3 |
-| find_jpeg | [https://github.com/AMDmi3/cmake-modules.git](https://github.com/AMDmi3/cmake-modules.git) | AMDmi3 |
-| find_libevent | [https://github.com/AMDmi3/cmake-modules.git](https://github.com/AMDmi3/cmake-modules.git) | AMDmi3 |
-| find_png | [https://github.com/AMDmi3/cmake-modules.git](https://github.com/AMDmi3/cmake-modules.git) | AMDmi3 |
-| find_sqlite | [https://github.com/AMDmi3/cmake-modules.git](https://github.com/AMDmi3/cmake-modules.git) | AMDmi3 |
-| find_zlib | [https://github.com/AMDmi3/cmake-modules.git](https://github.com/AMDmi3/cmake-modules.git) | AMDmi3 |
-
 ### MIT
 
 | Module | Repository | Author |
@@ -69,7 +49,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | afl_fuzzing | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | clang_tidy_cg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | clang_tidy_tools | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
-| cmake_checks | [https://github.com/polysquare/cmake-checks-cache.git](https://github.com/polysquare/cmake-checks-cache.git) | polysquare |
 | code_coverage_bilke | [https://github.com/bilke/cmake-modules.git](https://github.com/bilke/cmake-modules.git) | bilke |
 | code_formatter | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | compile_options | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
@@ -100,12 +79,11 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | gcov | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | git_version | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | glsl_shaders | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
+| install_helpers | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
 | lto_optimization | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | precompiled_header | [https://github.com/larsch/cmake-precompiled-header.git](https://github.com/larsch/cmake-precompiled-header.git) | larsch |
-| pycmake | [https://github.com/equinor/pycmake.git](https://github.com/equinor/pycmake.git) | equinor |
 | qt_helper | [https://github.com/dcourtois/CMakeUtils.git](https://github.com/dcourtois/CMakeUtils.git) | dcourtois |
 | runtime_dependencies | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | sanitizers | [https://github.com/arsenm/sanitizers-cmake.git](https://github.com/arsenm/sanitizers-cmake.git) | arsenm |
-| target_utils | [https://github.com/cpm-cmake/CPM.cmake.git](https://github.com/cpm-cmake/CPM.cmake.git) | cpm-cmake |
 
