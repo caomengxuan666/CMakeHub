@@ -470,6 +470,155 @@
         "testing",
         "google"
       ]
+    },
+    {
+      "name": "git_version",
+      "description": "Get git revision description for version management",
+      "category": "utils",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/GetGitRevisionDescription.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "git",
+        "version",
+        "revision",
+        "vcs"
+      ]
+    },
+    {
+      "name": "clang_tidy_cg",
+      "description": "Clang-Tidy integration from cginternals cmake-init",
+      "category": "code_quality",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/ClangTidy.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "clang-tidy",
+        "static-analysis",
+        "linting"
+      ]
+    },
+    {
+      "name": "cppcheck_cg",
+      "description": "Cppcheck integration from cginternals cmake-init",
+      "category": "code_quality",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/Cppcheck.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "cppcheck",
+        "static-analysis",
+        "linting"
+      ]
+    },
+    {
+      "name": "coverage_cg",
+      "description": "Code coverage from cginternals cmake-init",
+      "category": "code_quality",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/Coverage.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "coverage",
+        "gcov",
+        "testing"
+      ]
+    },
+    {
+      "name": "component_install",
+      "description": "Component installation helper",
+      "category": "packaging",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/ComponentInstall.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "install",
+        "component",
+        "packaging"
+      ]
+    },
+    {
+      "name": "runtime_dependencies",
+      "description": "Runtime dependencies management",
+      "category": "packaging",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/RuntimeDependencies.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "runtime",
+        "dependencies",
+        "deployment"
+      ]
+    },
+    {
+      "name": "export_header",
+      "description": "Generate template export header",
+      "category": "utils",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/GenerateTemplateExportHeader.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "export",
+        "header",
+        "dll",
+        "shared"
+      ]
     }
   ],
   "categories": {
@@ -479,6 +628,7 @@
     "dependency": "Dependency management tools",
     "platform": "Platform-specific tools",
     "testing": "Testing frameworks integration",
-    "utils": "Utility functions"
+    "utils": "Utility functions",
+    "packaging": "Installation and packaging helpers"
   }
 }
