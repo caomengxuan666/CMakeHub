@@ -5,7 +5,7 @@ Init project - Initialize a new project with CMakeHub
 import os
 import shutil
 import sys
-from cli.package_data import get_loader_path
+from cli.package_data import get_loader_path, get_package_data_path
 
 
 def init_project(args):
@@ -35,6 +35,12 @@ def init_project(args):
         loader_dest = os.path.join(project_dir, "cmake", "hub", "loader.cmake")
         shutil.copy(loader_path, loader_dest)
         print(f"✓ Copied loader.cmake to cmake/hub/")
+
+        # Copy modules.json
+        modules_json_path = get_package_data_path("modules.json")
+        modules_json_dest = os.path.join(project_dir, "modules.json")
+        shutil.copy(modules_json_path, modules_json_dest)
+        print(f"✓ Copied modules.json to project root")
 
         # Create CMakeLists.txt
         cmake_content = f"""cmake_minimum_required(VERSION 3.19)
