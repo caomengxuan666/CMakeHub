@@ -73,7 +73,7 @@ message(STATUS "  Invalid paths: ${invalid_count}")
 message(STATUS "========================================")
 
 if(invalid_count GREATER 0)
-    message(WARNING "Some modules have invalid paths. Please review the output above.")
+    message(FATAL_ERROR "Found ${invalid_count} modules with invalid paths. CI failed!")
 else()
     message(STATUS "All module paths are valid!")
 endif()

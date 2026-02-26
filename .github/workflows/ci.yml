@@ -68,7 +68,6 @@ jobs:
     - name: Verify module paths
       run: |
         cmake -P tests/verify_modules.cmake
-      continue-on-error: true
 
   lint:
     name: CMake File Validation
