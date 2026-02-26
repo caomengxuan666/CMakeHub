@@ -52,12 +52,14 @@ foreach(index RANGE ${max_index})
 
     if(status_code EQUAL 0)
         message(STATUS "  Result: [OK] VALID")
-        math(EXPR valid_count "${valid_count} + 1")
+        math(EXPR valid_tmp "${valid_count} + 1")
+        set(valid_count ${valid_tmp})
         # Clean up
         file(REMOVE "${CMAKE_CURRENT_BINARY_DIR}/temp_verify_${module_name}.cmake")
     else()
         message(STATUS "  Result: [X] INVALID (status: ${status_code})")
-        math(EXPR invalid_count "${invalid_count} + 1}")
+        math(EXPR invalid_tmp "${invalid_count} + 1")
+        set(invalid_count ${invalid_tmp})
     endif()
 
     message(STATUS "")

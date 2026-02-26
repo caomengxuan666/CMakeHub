@@ -89,7 +89,7 @@ def main():
     # Step 3: Run tests
     print_info("Running tests...")
     success, stdout, stderr = run_command(
-        ["ctest", "--output-on-failure", "--verbose"],
+        ["ctest", "-C", "Release", "--output-on-failure", "--verbose"],
         cwd=build_dir
     )
     
