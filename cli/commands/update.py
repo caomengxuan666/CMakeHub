@@ -53,7 +53,7 @@ def get_loader_path():
 
 
 def download_module_now(module_name, version=None):
-    """立即下载模块（不等待项目使用）"""
+    """Download module immediately (without waiting for project use)"""
     try:
         loader_path = get_loader_path()
         
