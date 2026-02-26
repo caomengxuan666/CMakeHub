@@ -41,6 +41,7 @@ jobs:
           pip install build cibuildwheel
 
       - name: Debug information
+        shell: bash
         run: |
           echo "Python version:"
           python --version
@@ -92,6 +93,7 @@ jobs:
           pip install build twine
 
       - name: Debug information
+        shell: bash
         run: |
           echo "Python version:"
           python --version
