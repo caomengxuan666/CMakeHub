@@ -1,0 +1,46 @@
+# CMake build directories
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# CMakeHub cache
+.cmakehub/
+cmakehub_test_cache/
+
+# Temporary files
+temp_verify_*.cmake
+test_*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test output
+Testing/
+coverage/
+coverage_report/
+*.gcda
+*.gcno
+*.info
+
+# OS
+Thumbs.db
+desktop.ini

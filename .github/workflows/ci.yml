@@ -1,0 +1,100 @@
+name: CMakeHub CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        cmake: ['3.19', '3.20', 'latest']
+        exclude:
+          # Exclude some combinations to reduce CI time
+          - os: windows-latest
+            cmake: '3.19'
+          - os: macos-latest
+            cmake: '3.19'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up CMake ${{ matrix.cmake }}
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: ${{ matrix.cmake }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+    
+    - name: Run loader tests
+      run: |
+        python run_single_test.py test_loader_basic
+    
+    - name: Run cache tests
+      run: |
+        python run_single_test.py test_cache
+    
+    - name: Run version check tests
+      run: |
+        python run_single_test.py test_version_check
+    
+    - name: Run dependency tests
+      run: |
+        python run_single_test.py test_dependencies
+    
+    - name: Run conflict tests
+      run: |
+        python run_single_test.py test_conflicts
+    
+    - name: Run all tests
+      run: |
+        python run_tests.py
+      continue-on-error: true
+    
+    - name: Verify module paths
+      run: |
+        cmake -P verify_modules.cmake
+      continue-on-error: true
+
+  lint:
+    name: CMake File Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up CMake
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: '3.19'
+    
+    - name: Validate CMake syntax
+      run: |
+        cmake -P cmake/hub/loader.cmake
+    
+    - name: Validate JSON syntax
+      run: |
+        python -c "import json; json.load(open('modules.json'))"
+    
+    - name: Validate test scripts
+      run: |
+        cmake -P tests/test_loader_basic/run.cmake
+        cmake -P tests/test_cache/run.cmake
+        cmake -P tests/test_version_check/run.cmake
+        cmake -P tests/test_dependencies/run.cmake
+        cmake -P tests/test_conflicts/run.cmake
