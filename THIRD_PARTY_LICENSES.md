@@ -9,7 +9,7 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | Apache-2.0 | 2 |
 | BSD3 | 1 |
 | Boost | 3 |
-| MIT | 36 |
+| MIT | 40 |
 
 ## Detailed Module List
 
@@ -42,6 +42,7 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | afl_fuzzing | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | clang_tidy_cg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | clang_tidy_tools | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
+| code_coverage_bilke | [https://github.com/bilke/cmake-modules.git](https://github.com/bilke/cmake-modules.git) | bilke |
 | code_formatter | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | compile_options | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | compiler_warnings | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
@@ -72,6 +73,9 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | glsl_shaders | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
 | lto_optimization | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
+| precompiled_header | [https://github.com/larsch/cmake-precompiled-header.git](https://github.com/larsch/cmake-precompiled-header.git) | larsch |
+| qt_helper | [https://github.com/dcourtois/CMakeUtils.git](https://github.com/dcourtois/CMakeUtils.git) | dcourtois |
 | runtime_dependencies | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | sanitizers | [https://github.com/arsenm/sanitizers-cmake.git](https://github.com/arsenm/sanitizers-cmake.git) | arsenm |
+| target_utils | [https://github.com/cpm-cmake/CPM.cmake.git](https://github.com/cpm-cmake/CPM.cmake.git) | cpm-cmake |
 

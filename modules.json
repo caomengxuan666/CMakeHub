@@ -135,6 +135,28 @@
       ]
     },
     {
+      "name": "code_coverage_bilke",
+      "description": "Code coverage from bilke/cmake-modules",
+      "category": "code_quality",
+      "author": "bilke",
+      "repository": "https://github.com/bilke/cmake-modules.git",
+      "path": "CodeCoverage.cmake",
+      "license": "MIT",
+      "stars": 300,
+      "last_updated": "2023-05-10",
+      "version": "master",
+      "cmake_minimum_required": "3.14",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "coverage",
+        "gcov",
+        "lcov",
+        "testing"
+      ]
+    },
+    {
       "name": "code_formatter",
       "description": "clang-format and cmake-format integration",
       "category": "code_quality",
@@ -862,6 +884,50 @@
       ]
     },
     {
+      "name": "precompiled_header",
+      "description": "Precompiled header setup for CMake (alternative to cotire)",
+      "category": "build_optimization",
+      "author": "larsch",
+      "repository": "https://github.com/larsch/cmake-precompiled-header.git",
+      "path": "PrecompiledHeader.cmake",
+      "license": "MIT",
+      "stars": 800,
+      "last_updated": "2022-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.5",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "pch",
+        "precompiled",
+        "header",
+        "build",
+        "speed"
+      ]
+    },
+    {
+      "name": "qt_helper",
+      "description": "Qt integration helper",
+      "category": "utils",
+      "author": "dcourtois",
+      "repository": "https://github.com/dcourtois/CMakeUtils.git",
+      "path": "Qt.cmake",
+      "license": "MIT",
+      "stars": 100,
+      "last_updated": "2021-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "qt",
+        "gui",
+        "framework"
+      ]
+    },
+    {
       "name": "runtime_dependencies",
       "description": "Runtime dependencies management",
       "category": "packaging",
@@ -906,6 +972,27 @@
       ]
     },
     {
+      "name": "target_utils",
+      "description": "Target utility helpers",
+      "category": "utils",
+      "author": "cpm-cmake",
+      "repository": "https://github.com/cpm-cmake/CPM.cmake.git",
+      "path": "cmake/CPMUtils.cmake",
+      "license": "MIT",
+      "stars": 3700,
+      "last_updated": "2024-01-10",
+      "version": "master",
+      "cmake_minimum_required": "3.14",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "target",
+        "utility",
+        "helper"
+      ]
+    },
+    {
       "name": "use_folders",
       "description": "Enable USE_FOLDERS property for MSVC projects",
       "category": "platform",
@@ -936,6 +1023,7 @@
     "platform": "Platform-specific tools",
     "testing": "Testing frameworks integration",
     "utils": "Utility functions",
-    "packaging": "Installation and packaging helpers"
+    "packaging": "Installation and packaging helpers",
+    "gui": "GUI framework integration"
   }
 }
