@@ -6,6 +6,7 @@ import os
 import shutil
 import sys
 import subprocess
+import json
 from cli.package_data import load_modules_json, get_loader_path
 
 
@@ -23,45 +24,77 @@ def get_cache_dir():
 
 
 def download_module_now(module_name, version=None):
-    """Download module immediately (without waiting for project use)"""
+    """Download module immediately using Git (without waiting for project use)"""
     try:
-        loader_path = get_loader_path()
+        # Get module info
+        data = load_modules_json()
+        modules = data.get("modules", [])
 
-        # Create temporary CMake script to download module
-        # Normalize path for CMake (use forward slashes)
-        loader_path_normalized = loader_path.replace("\\", "/")
+        module = None
+        for m in modules:
+            if m["name"] == module_name:
+                module = m
+                break
 
-        cmake_script = f"""cmake_minimum_required(VERSION 3.19)
+        if not module:
+            print(f"Error: Module '{module_name}' not found", file=sys.stderr)
+            return False
 
-# Include CMakeHub
-include("{loader_path_normalized}")
+        # Get module details
+        repository = module.get("repository", "")
+        module_version = version or module.get("version", "master")
+        module_path = module.get("path", "")
 
-# Download module now
-set(CMAKEHUB_VERBOSE TRUE)
-cmakehub_use({module_name})
-"""
+        if not repository:
+            print(f"Error: Module '{module_name}' has no repository URL", file=sys.stderr)
+            return False
 
-        # Write temporary script
-        temp_script = os.path.join(os.path.dirname(__file__), "temp_download_module.cmake")
-        with open(temp_script, "w") as f:
-            f.write(cmake_script)
+        # Create cache directory
+        cache_dir = get_cache_dir()
+        module_cache_dir = os.path.join(cache_dir, module_name, module_version)
+        os.makedirs(module_cache_dir, exist_ok=True)
 
-        try:
-            # Run CMake to download
-            print(f"Downloading {module_name}...")
-            result = subprocess.run(["cmake", "-P", temp_script], capture_output=True, text=True)
+        print(f"Downloading {module_name} from {repository}...")
+        print(f"  Version: {module_version}")
+        print(f"  Cache: {module_cache_dir}")
 
-            if result.returncode == 0:
-                print(f"✓ Module '{module_name}' downloaded successfully")
-                return True
-            else:
-                print(f"✗ Failed to download module: {result.stderr}", file=sys.stderr)
-                return False
+        # Check if already downloaded
+        meta_file = os.path.join(module_cache_dir, ".cmh_meta.json")
+        if os.path.exists(meta_file):
+            print(f"  ✓ Module already cached")
+            return True
 
-        finally:
-            # Clean up temporary file
-            if os.path.exists(temp_script):
-                os.remove(temp_script)
+        # Clone repository using Git
+        git_clone_cmd = [
+            "git", "clone",
+            "--depth", "1",
+            "--branch", module_version,
+            repository,
+            module_cache_dir
+        ]
+
+        result = subprocess.run(git_clone_cmd, capture_output=True, text=True)
+
+        if result.returncode == 0:
+            # Create metadata file
+            from datetime import datetime
+            metadata = {
+                "module": module_name,
+                "repository": repository,
+                "version": module_version,
+                "path": module_path,
+                "downloaded_at": datetime.now().isoformat()
+            }
+
+            with open(meta_file, "w") as f:
+                json.dump(metadata, f, indent=2)
+
+            print(f"✓ Module '{module_name}' downloaded successfully")
+            return True
+        else:
+            print(f"✗ Failed to download module:", file=sys.stderr)
+            print(f"  {result.stderr}", file=sys.stderr)
+            return False
 
     except Exception as e:
         print(f"✗ Error downloading module: {e}", file=sys.stderr)
