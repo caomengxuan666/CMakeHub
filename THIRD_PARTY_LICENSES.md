@@ -7,11 +7,10 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | License | Module Count |
 |---------|--------------|
 | Apache-2.0 | 2 |
-| BSD2 | 2 |
 | BSD3 | 1 |
 | BSL-1.0 | 1 |
 | Boost | 3 |
-| MIT | 43 |
+| MIT | 41 |
 
 ## Detailed Module List
 
@@ -21,13 +20,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 |--------|-----------|--------|
 | c_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | cpp_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
-
-### BSD2
-
-| Module | Repository | Author |
-|--------|-----------|--------|
-| sugar | [https://github.com/ruslo/sugar.git](https://github.com/ruslo/sugar.git) | ruslo |
-| ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
 
 ### BSD3
 
@@ -46,7 +38,7 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | Module | Repository | Author |
 |--------|-----------|--------|
 | compiler_info | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
-| launchers | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
+| launchers | [https://github.com/rpavlik/cmake-modules.git](https://github.com/ravlik/cmake-modules.git) | rpavlik |
 | use_folders | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
 
 ### MIT
@@ -64,7 +56,6 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | component_install | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | conan | [https://github.com/conan-io/cmake-conan.git](https://github.com/conan-io/cmake-conan.git) | conan-io |
 | cotire | [https://github.com/sakra/cotire.git](https://github.com/sakra/cotire.git) | sakra |
-| coveralls-cmake | [https://github.com/JoakimSoderberg/coveralls-cmake.git](https://github.com/JoakimSoderberg/coveralls-cmake.git) | JoakimSoderberg |
 | coverage | [https://github.com/bilke/cmake-modules.git](https://github.com/bilke/cmake-modules.git) | bilke |
 | coverage_cg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | cpm | [https://github.com/cpm-cmake/CPM.cmake.git](https://github.com/cpm-cmake/CPM.cmake.git) | cpm-cmake |
@@ -88,11 +79,10 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | gcov | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | git_version | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | glsl_shaders | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
-| iwyu-target-cmake | [https://github.com/polysquare/iwyu-target-cmake.git](https://github.com/polysquare/iwyu-target-cmake.git) | polysquare |
 | install_helpers | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
 | lto_optimization | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | precompiled_header | [https://github.com/larsch/cmake-precompiled-header.git](https://github.com/larsch/cmake-precompiled-header.git) | larsch |
 | qt_helper | [https://github.com/dcourtois/CMakeUtils.git](https://github.com/dcourtois/CMakeUtils.git) | dcourtois |
 | runtime_dependencies | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | sanitizers | [https://github.com/arsenm/sanitizers-cmake.git](https://github.com/arsenm/sanitizers-cmake.git) | arsenm |
-| ucm | [https://github.com/ruslo/ucm.git](https://github.com/ruslo/ucm.git) | ruslo |
