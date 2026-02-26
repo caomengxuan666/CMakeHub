@@ -87,13 +87,8 @@ Testing frameworks integration
 
 Utility functions
 
-- **[bin2cpp](bin2cpp.md)**: Convert files to C++ for embedding
-- **[check_function](check_function.md)**: Check if function exists in compiler
-- **[cmake_checks](cmake_checks.md)**: CMake checks cache helper modules
-- **[embed_resources](embed_resources.md)**: Embed resources (files) into C++ executables
 - **[export_header](export_header.md)**: Generate template export header
 - **[find_assimp](find_assimp.md)**: Find ASSIMP 3D model library
-- **[find_curl](find_curl.md)**: Find cURL library
 - **[find_egl](find_egl.md)**: Find EGL library
 - **[find_ffmpeg](find_ffmpeg.md)**: Find FFMPEG library
 - **[find_glesv2](find_glesv2.md)**: Find OpenGL ES 2.0 library
@@ -101,15 +96,7 @@ Utility functions
 - **[find_gtk3](find_gtk3.md)**: Find GTK3 library
 - **[find_gtk4](find_gtk4.md)**: Find GTK4 library
 - **[find_hidapi](find_hidapi.md)**: Find HIDAPI library
-- **[find_jpeg](find_jpeg.md)**: Find JPEG library
-- **[find_libevent](find_libevent.md)**: Find libevent library
 - **[find_nodejs](find_nodejs.md)**: Find Node.js
-- **[find_png](find_png.md)**: Find PNG library
 - **[find_sdl2](find_sdl2.md)**: Find SDL2 library
-- **[find_sqlite](find_sqlite.md)**: Find SQLite database library
-- **[find_vulkan](find_vulkan.md)**: Find Vulkan library
-- **[find_zlib](find_zlib.md)**: Find zlib compression library
 - **[git_version](git_version.md)**: Get git revision description for version management
-- **[pycmake](pycmake.md)**: Python module version checking for CMake
 - **[qt_helper](qt_helper.md)**: Qt integration helper
-- **[target_utils](target_utils.md)**: Target utility helpers
