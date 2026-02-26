@@ -91,6 +91,50 @@
       ]
     },
     {
+      "name": "catch2_cmake",
+      "description": "Catch2 testing framework CMake integration",
+      "category": "testing",
+      "author": "catchorg",
+      "repository": "https://github.com/catchorg/Catch2.git",
+      "path": "extras/Catch.cmake",
+      "license": "BSL-1.0",
+      "stars": 30000,
+      "last_updated": "2024-02-01",
+      "version": "devel",
+      "cmake_minimum_required": "3.22",
+      "cpp_minimum_required": "14",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "catch2",
+        "testing",
+        "unit-test",
+        "ctest"
+      ]
+    },
+    {
+      "name": "check_function",
+      "description": "Check if function exists in compiler",
+      "category": "utils",
+      "author": "jedbrown",
+      "repository": "https://github.com/jedbrown/cmake-modules.git",
+      "path": "CheckFunctionExists.cmake",
+      "license": "BSD2",
+      "stars": 50,
+      "last_updated": "2021-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "function",
+        "check",
+        "compiler",
+        "feature"
+      ]
+    },
+    {
       "name": "clang_tidy_cg",
       "description": "Clang-Tidy integration from cginternals cmake-init",
       "category": "code_quality",
@@ -132,6 +176,28 @@
         "cppcheck",
         "static-analysis",
         "linting"
+      ]
+    },
+    {
+      "name": "cmake_checks",
+      "description": "CMake checks cache helper modules",
+      "category": "utils",
+      "author": "polysquare",
+      "repository": "https://github.com/polysquare/cmake-checks-cache.git",
+      "path": "cmake/CheckCompilerFlag.cmake",
+      "license": "MIT",
+      "stars": 50,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "checks",
+        "compiler",
+        "cache",
+        "utility"
       ]
     },
     {
@@ -465,6 +531,27 @@
       ]
     },
     {
+      "name": "doctest",
+      "description": "Doctest testing framework integration",
+      "category": "testing",
+      "author": "doctest",
+      "repository": "https://github.com/doctest/doctest.git",
+      "path": "scripts/cmake/doctest.cmake",
+      "license": "MIT",
+      "stars": 5000,
+      "last_updated": "2024-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.14",
+      "cpp_minimum_required": "11",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "doctest",
+        "testing",
+        "unit-test"
+      ]
+    },
+    {
       "name": "doxygen_helper",
       "description": "Doxygen documentation generation helper",
       "category": "docs",
@@ -526,6 +613,28 @@
         "assimp",
         "3d",
         "model",
+        "find"
+      ]
+    },
+    {
+      "name": "find_curl",
+      "description": "Find cURL library",
+      "category": "utils",
+      "author": "AMDmi3",
+      "repository": "https://github.com/AMDmi3/cmake-modules.git",
+      "path": "FindCURL.cmake",
+      "license": "CC0",
+      "stars": 100,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "curl",
+        "http",
+        "network",
         "find"
       ]
     },
@@ -684,6 +793,50 @@
       ]
     },
     {
+      "name": "find_jpeg",
+      "description": "Find JPEG library",
+      "category": "utils",
+      "author": "AMDmi3",
+      "repository": "https://github.com/AMDmi3/cmake-modules.git",
+      "path": "FindJPEG.cmake",
+      "license": "CC0",
+      "stars": 100,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "jpeg",
+        "image",
+        "graphics",
+        "find"
+      ]
+    },
+    {
+      "name": "find_libevent",
+      "description": "Find libevent library",
+      "category": "utils",
+      "author": "AMDmi3",
+      "repository": "https://github.com/AMDmi3/cmake-modules.git",
+      "path": "FindLibevent.cmake",
+      "license": "CC0",
+      "stars": 100,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "libevent",
+        "network",
+        "async",
+        "find"
+      ]
+    },
+    {
       "name": "find_nodejs",
       "description": "Find Node.js",
       "category": "utils",
@@ -726,6 +879,28 @@
       ]
     },
     {
+      "name": "find_png",
+      "description": "Find PNG library",
+      "category": "utils",
+      "author": "AMDmi3",
+      "repository": "https://github.com/AMDmi3/cmake-modules.git",
+      "path": "FindPNG.cmake",
+      "license": "CC0",
+      "stars": 100,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "png",
+        "image",
+        "graphics",
+        "find"
+      ]
+    },
+    {
       "name": "find_sdl2",
       "description": "Find SDL2 library",
       "category": "utils",
@@ -744,6 +919,70 @@
         "sdl2",
         "game",
         "multimedia",
+        "find"
+      ]
+    },
+    {
+      "name": "find_sqlite",
+      "description": "Find SQLite database library",
+      "category": "utils",
+      "author": "AMDmi3",
+      "repository": "https://github.com/AMDmi3/cmake-modules.git",
+      "path": "FindSQLite3.cmake",
+      "license": "CC0",
+      "stars": 100,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "sqlite",
+        "database",
+        "find"
+      ]
+    },
+    {
+      "name": "find_vulkan",
+      "description": "Find Vulkan library",
+      "category": "utils",
+      "author": "Kitware",
+      "repository": "https://github.com/KhronosGroup/Vulkan-ValidationLayers.git",
+      "path": "cmake/FindVulkan.cmake",
+      "license": "Apache-2.0",
+      "stars": 4000,
+      "last_updated": "2023-10-01",
+      "version": "main",
+      "cmake_minimum_required": "3.18",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "vulkan",
+        "graphics",
+        "gpu",
+        "find"
+      ]
+    },
+    {
+      "name": "find_zlib",
+      "description": "Find zlib compression library",
+      "category": "utils",
+      "author": "AMDmi3",
+      "repository": "https://github.com/AMDmi3/cmake-modules.git",
+      "path": "FindZLIB.cmake",
+      "license": "CC0",
+      "stars": 100,
+      "last_updated": "2020-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.10",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "zlib",
+        "compression",
         "find"
       ]
     },
@@ -904,6 +1143,28 @@
         "header",
         "build",
         "speed"
+      ]
+    },
+    {
+      "name": "pycmake",
+      "description": "Python module version checking for CMake",
+      "category": "utils",
+      "author": "equinor",
+      "repository": "https://github.com/equinor/pycmake.git",
+      "path": "pycmake.cmake",
+      "license": "MIT",
+      "stars": 30,
+      "last_updated": "2022-05-01",
+      "version": "main",
+      "cmake_minimum_required": "3.14",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "python",
+        "module",
+        "version",
+        "check"
       ]
     },
     {
