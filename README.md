@@ -43,12 +43,15 @@ CMakeHub is a unified CMake module manager that provides a "central warehouse" f
 - 🌍 **Cross-Platform Filtering**: Automatic platform compatibility warnings
 - 🔄 **Update Management**: Easy module updates via cache clearing
 - ✅ **Compatibility Check**: Verify module compatibility before loading
+- 💻 **Command Line Interface**: CLI tool for quick module discovery and management
 
 ---
 
 ## Quick Start
 
 ### Installation
+
+#### Option 1: Clone Repository
 
 ```bash
 # Clone CMakeHub
@@ -57,6 +60,28 @@ cd CMakeHub
 
 # Or add as a submodule
 git submodule add https://github.com/caomengxuan666/CMakeHub.git cmake/cmakehub
+```
+
+#### Option 2: Install CLI Tool (Optional)
+
+```bash
+# Clone CMakeHub
+git clone https://github.com/caomengxuan666/CMakeHub.git
+cd CMakeHub
+
+# Install CLI tool (requires Python 3.6+)
+pip install -e .
+
+# Or install globally
+python setup.py install
+```
+
+After installation, you can use the CLI tool:
+
+```bash
+cmakehub --help
+cmakehub list
+cmakehub search sanitizers
 ```
 
 ### Basic Usage
@@ -175,6 +200,188 @@ cmakehub_info(sanitizers)
 # Show licenses of all loaded modules
 cmakehub_show_licenses()
 ```
+
+---
+
+## Command Line Interface
+
+CMakeHub includes a Python CLI tool for quick module discovery and management without needing to write CMake code.
+
+### Installation
+
+```bash
+# Install CLI tool
+pip install -e .
+
+# Or globally
+python setup.py install
+```
+
+### Commands
+
+#### List Modules
+
+```bash
+# List all modules
+cmakehub list
+
+# List modules in a category
+cmakehub list --category testing
+cmakehub list -c code_quality
+
+# Compact output
+cmakehub list --compact
+```
+
+#### Search Modules
+
+```bash
+# Search by keyword
+cmakehub search sanitizers
+cmakehub search testing
+
+# Case-insensitive search
+cmakehub search Sanitizers
+```
+
+#### Get Module Info
+
+```bash
+# Display detailed module information
+cmakehub info sanitizers
+cmakehub info cotire
+```
+
+#### Check Compatibility
+
+```bash
+# Check if a module is compatible with your system
+cmakehub check sanitizers
+cmakehub check cotire
+```
+
+#### Cache Management
+
+```bash
+# Show cache statistics
+cmakehub cache
+
+# Clear all cache
+cmakehub cache --clear
+
+# Clear specific module cache
+cmakehub cache --clear sanitizers
+```
+
+#### Update Modules
+
+```bash
+# Update specific module (clears cache)
+cmakehub update sanitizers
+
+# Update all modules
+cmakehub update
+
+# Update and download immediately
+cmakehub update --download-now
+cmakehub update sanitizers --download-now
+```
+
+#### Generate CMake Code
+
+```bash
+# Generate CMake code for a module
+cmakehub use sanitizers
+
+# Specify version
+cmakehub use cotire --version master
+cmakehub use cotire -v master
+
+# Add options
+cmakehub use sanitizers ADDRESS_SANITIZER ON UNDEFINED_SANITIZER ON
+
+# Save to file
+cmakehub use sanitizers --output my_project/CMakeLists.txt
+
+# Append to existing file
+cmakehub use cotire --append CMakeLists.txt
+
+# Add test
+cmakehub use doctest --test
+```
+
+#### Initialize Project
+
+```bash
+# Create a new CMakeHub project
+cmakehub init my_project
+
+cd my_project
+```
+
+This creates a complete project structure:
+
+```
+my_project/
+├── CMakeLists.txt
+├── cmake/
+│   └── hub/
+│       └── loader.cmake
+├── src/
+│   └── main.cpp
+├── .gitignore
+└── README.md
+```
+
+### Use Cases
+
+#### Quick Module Discovery
+
+```bash
+# Find modules for testing
+cmakehub search testing
+cmakehub list --category testing
+
+# Check if a module is compatible
+cmakehub check sanitizers
+```
+
+#### Project Initialization
+
+```bash
+# Create a new project with CMakeHub
+cmakehub init my_app
+cd my_app
+
+# Add modules
+cmakehub use sanitizers --append CMakeLists.txt
+cmakehub use coverage --append CMakeLists.txt
+```
+
+#### Cache Management
+
+```bash
+# View cache size
+cmakehub cache
+
+# Clear outdated modules
+cmakehub update --download-now
+```
+
+### CLI vs CMake API
+
+| Feature | CLI | CMake API |
+|---------|-----|-----------|
+| List modules | ✅ `cmakehub list` | ✅ `cmakehub_list()` |
+| Search modules | ✅ `cmakehub search` | ✅ `cmakehub_search()` |
+| Get module info | ✅ `cmakehub info` | ✅ `cmakehub_info()` |
+| Check compatibility | ✅ `cmakehub check` | ✅ `cmakehub_check_compatibility()` |
+| Cache management | ✅ `cmakehub cache` | ✅ `cmakehub_cache_info()` |
+| Update modules | ✅ `cmakehub update` | ✅ `cmakehub_update()` |
+| Load modules | ❌ (use `cmakehub use`) | ✅ `cmakehub_use()` |
+| Dependency graph | ❌ | ✅ `cmakehub_dependency_graph()` |
+| Generate CMake code | ✅ `cmakehub use` | ❌ |
+| Initialize project | ✅ `cmakehub init` | ❌ |
 
 ---
 
