@@ -1,0 +1,6 @@
+digraph CMakeHub_Dependencies {
+  rankdir=LR;
+  node [shape=box];
+  "CMakeHub" [style=filled, fillcolor=lightblue];
+
+}

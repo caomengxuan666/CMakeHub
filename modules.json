@@ -20,6 +20,14 @@
         "testing",
         "gtest",
         "google"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -42,6 +50,14 @@
         "afl",
         "security",
         "testing"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -66,6 +82,42 @@
         "ndk",
         "mobile",
         "toolchain"
+      ],
+      "platform": [
+        "android",
+        "linux",
+        "windows"
+      ]
+    },
+    {
+      "name": "bin2cpp",
+      "description": "Convert files to C++ for embedding",
+      "category": "utils",
+      "author": "end2endzone",
+      "repository": "https://github.com/end2endzone/bin2cpp.git",
+      "path": "bin2cpp.cmake",
+      "license": "MIT",
+      "stars": 200,
+      "last_updated": "2022-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.14",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "bin2cpp",
+        "embed",
+        "file",
+        "c++",
+        "binary"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -88,6 +140,14 @@
         "standards",
         "c11",
         "c99"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -110,6 +170,14 @@
         "testing",
         "unit-test",
         "ctest"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -132,6 +200,14 @@
         "check",
         "compiler",
         "feature"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -153,6 +229,14 @@
         "clang-tidy",
         "static-analysis",
         "linting"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -176,6 +260,14 @@
         "cppcheck",
         "static-analysis",
         "linting"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -198,6 +290,14 @@
         "compiler",
         "cache",
         "utility"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -220,6 +320,14 @@
         "gcov",
         "lcov",
         "testing"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -242,6 +350,14 @@
         "clang-format",
         "cmake-format",
         "style"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -263,6 +379,14 @@
         "compiler",
         "options",
         "flags"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -284,6 +408,14 @@
         "compiler",
         "version",
         "info"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -305,6 +437,14 @@
         "warnings",
         "compiler",
         "options"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -326,6 +466,14 @@
         "install",
         "component",
         "packaging"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -350,6 +498,14 @@
         "package_manager",
         "dependency",
         "conan"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -373,6 +529,14 @@
         "unity",
         "build",
         "speed"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -395,6 +559,14 @@
         "gcov",
         "lcov",
         "testing"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -416,6 +588,14 @@
         "coverage",
         "gcov",
         "testing"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -440,6 +620,14 @@
         "package_manager",
         "dependency",
         "cpm"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -464,6 +652,14 @@
         "c++14",
         "c++17",
         "c++20"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -485,6 +681,14 @@
         "cppcheck",
         "static-analysis",
         "linting"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -506,6 +710,14 @@
         "cuda",
         "nvidia",
         "gpu"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -528,6 +740,14 @@
         "dependency",
         "visualization",
         "docs"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -549,6 +769,14 @@
         "doctest",
         "testing",
         "unit-test"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -570,6 +798,45 @@
         "doxygen",
         "documentation",
         "docs"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "name": "embed_resources",
+      "description": "Embed resources (files) into C++ executables",
+      "category": "utils",
+      "author": "MiSo1289",
+      "repository": "https://github.com/MiSo1289/cmake-embed.git",
+      "path": "EmbedResources.cmake",
+      "license": "MIT",
+      "stars": 100,
+      "last_updated": "2023-01-01",
+      "version": "master",
+      "cmake_minimum_required": "3.17",
+      "cpp_minimum_required": "17",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "embed",
+        "resources",
+        "binary",
+        "files",
+        "embedding"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -592,6 +859,14 @@
         "header",
         "dll",
         "shared"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -614,6 +889,14 @@
         "3d",
         "model",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -636,6 +919,14 @@
         "http",
         "network",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -658,6 +949,14 @@
         "opengl",
         "graphics",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -680,6 +979,14 @@
         "video",
         "multimedia",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -702,6 +1009,14 @@
         "opengl-es",
         "graphics",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -724,6 +1039,14 @@
         "opengl",
         "graphics",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -746,6 +1069,9 @@
         "gui",
         "linux",
         "find"
+      ],
+      "platform": [
+        "linux"
       ]
     },
     {
@@ -768,6 +1094,9 @@
         "gui",
         "linux",
         "find"
+      ],
+      "platform": [
+        "linux"
       ]
     },
     {
@@ -790,6 +1119,14 @@
         "usb",
         "hardware",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -812,6 +1149,14 @@
         "image",
         "graphics",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -834,6 +1179,14 @@
         "network",
         "async",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -855,6 +1208,14 @@
         "nodejs",
         "javascript",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -876,6 +1237,14 @@
         "gtest",
         "testing",
         "google"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -898,6 +1267,14 @@
         "image",
         "graphics",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -920,6 +1297,14 @@
         "game",
         "multimedia",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -941,6 +1326,14 @@
         "sqlite",
         "database",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -963,6 +1356,14 @@
         "graphics",
         "gpu",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -984,6 +1385,14 @@
         "zlib",
         "compression",
         "find"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1005,6 +1414,14 @@
         "gcov",
         "coverage",
         "testing"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1027,6 +1444,14 @@
         "version",
         "revision",
         "vcs"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1049,6 +1474,44 @@
         "shader",
         "vulkan",
         "graphics"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "name": "install_helpers",
+      "description": "Simplified install rules and helpers",
+      "category": "packaging",
+      "author": "cginternals",
+      "repository": "https://github.com/cginternals/cmake-init.git",
+      "path": "cmake/ComponentInstall.cmake",
+      "license": "MIT",
+      "stars": 2000,
+      "last_updated": "2023-03-01",
+      "version": "master",
+      "cmake_minimum_required": "3.20",
+      "cpp_minimum_required": "",
+      "dependencies": [],
+      "conflicts": [],
+      "tags": [
+        "install",
+        "package",
+        "deployment",
+        "helper"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1076,6 +1539,9 @@
         "mobile",
         "toolchain",
         "apple"
+      ],
+      "platform": [
+        "macos"
       ]
     },
     {
@@ -1098,6 +1564,9 @@
         "ide",
         "vs",
         "xcode"
+      ],
+      "platform": [
+        "windows"
       ]
     },
     {
@@ -1120,6 +1589,14 @@
         "ipo",
         "optimization",
         "performance"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1143,6 +1620,14 @@
         "header",
         "build",
         "speed"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1165,6 +1650,14 @@
         "module",
         "version",
         "check"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1186,6 +1679,14 @@
         "qt",
         "gui",
         "framework"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1207,6 +1708,14 @@
         "runtime",
         "dependencies",
         "deployment"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1230,6 +1739,14 @@
         "undefined",
         "thread",
         "memory"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1251,6 +1768,14 @@
         "target",
         "utility",
         "helper"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     },
     {
@@ -1273,6 +1798,14 @@
         "msvc",
         "folders",
         "ide"
+      ],
+      "platform": [
+        "windows",
+        "linux",
+        "macos",
+        "freebsd",
+        "ios",
+        "android"
       ]
     }
   ],

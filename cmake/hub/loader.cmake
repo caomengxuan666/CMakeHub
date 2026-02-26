@@ -212,6 +212,15 @@ endfunction()
 function(cmakehub_use module_name)
     cmakehub_log(STATUS "Loading module: ${module_name}")
     
+    # Parse optional VERSION and CONFIG arguments
+    set(OPTIONS "")
+    set(SINGLE_ARGS VERSION)
+    set(MULTI_ARGS "")
+    cmake_parse_arguments(USE "${OPTIONS}" "${SINGLE_ARGS}" "${MULTI_ARGS}" ${ARGN})
+    
+    # Capture additional config arguments (everything after VERSION)
+    set(remaining_args "${USE_UNPARSED_ARGUMENTS}")
+    
     # Get module information
     cmakehub_get_module_info(${module_name} success)
     if(NOT success)
@@ -230,6 +239,12 @@ function(cmakehub_use module_name)
     cmakehub_get_module_property(${module_name} conflicts CONFLICTS_JSON)
     cmakehub_get_module_property(${module_name} version VERSION)
     
+    # Use user-provided version if specified
+    if(USE_VERSION)
+        set(VERSION ${USE_VERSION})
+        cmakehub_log(STATUS "Using specified version: ${VERSION}")
+    endif()
+    
     # Set defaults for optional fields
     if(NOT VERSION OR VERSION STREQUAL "")
         set(VERSION "main")
@@ -246,6 +261,41 @@ function(cmakehub_use module_name)
     # Version checks
     cmakehub_check_cmake_version("${CMAKE_MINIMUM_REQUIRED}")
     cmakehub_check_cpp_standard("${CPP_MINIMUM_REQUIRED}")
+    
+    # Platform compatibility check
+    cmakehub_get_module_property(${module_name} platform PLATFORM_JSON)
+    cmakehub_parse_list("${PLATFORM_JSON}" platform_list)
+    
+    if(platform_list)
+        # Detect current platform
+        set(current_platform "")
+        if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+            set(current_platform "windows")
+        elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+            set(current_platform "linux")
+        elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+            set(current_platform "macos")
+        elseif(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+            set(current_platform "freebsd")
+        elseif(IOS)
+            set(current_platform "ios")
+        elseif(ANDROID)
+            set(current_platform "android")
+        endif()
+        
+        # Check if current platform is in the list
+        set(platform_compatible FALSE)
+        foreach(p ${platform_list})
+            if(p STREQUAL current_platform)
+                set(platform_compatible TRUE)
+                break()
+            endif()
+        endforeach()
+        
+        if(NOT platform_compatible AND current_platform)
+            cmakehub_log(WARNING "Module '${module_name}' is not compatible with platform '${current_platform}'. Supported platforms: ${platform_list}")
+        endif()
+    endif()
     
     # Check conflicts
     cmakehub_check_conflicts(${module_name} "${CONFLICTS_JSON}")
@@ -312,6 +362,29 @@ function(cmakehub_use module_name)
     
     # Include the module file
     if(EXISTS ${module_file})
+        # Set config variables from remaining arguments (CONFIG穿透)
+        if(remaining_args)
+            cmakehub_log(STATUS "Setting config variables for ${module_name}: ${remaining_args}")
+            list(LENGTH remaining_args remaining_len)
+            math(EXPR remaining_idx_max "${remaining_len} - 1")
+            
+            foreach(idx RANGE 0 ${remaining_idx_max})
+                list(GET remaining_args ${idx} current)
+                math(EXPR next_idx "${idx} + 1")
+                if(next_idx LESS_EQUAL remaining_idx_max)
+                    list(GET remaining_args ${next_idx} next_val)
+                    if(next_val STREQUAL "ON" OR next_val STREQUAL "OFF" OR next_val STREQUAL "TRUE" OR next_val STREQUAL "FALSE" OR next_val MATCHES "^[0-9]+$" OR next_val MATCHES "^\".*\"$" OR next_val MATCHES "^'.*'$")
+                        # This is a value, set the variable
+                        string(REPLACE "\"" "" clean_key "${current}")
+                        set(${clean_key} ${next_val} CACHE BOOL "" FORCE)
+                        cmakehub_log(STATUS "  Set ${clean_key} = ${next_val}")
+                        # Skip the next iteration since we consumed the value
+                        math(EXPR idx "${idx} + 1")
+                    endif()
+                endif()
+            endforeach()
+        endif()
+        
         include(${module_file})
         cmakehub_log(STATUS "Module '${module_name}' loaded successfully")
     else()
@@ -520,6 +593,300 @@ function(cmakehub_info module_name)
     endif()
     
     message(STATUS "")
+endfunction()
+
+# =============================================================================
+# Module Discovery and Management Functions
+# =============================================================================
+
+function(cmakehub_list)
+    cmakehub_log(STATUS "Listing all available modules...")
+    
+    if(NOT EXISTS ${CMAKEHUB_MODULES_INDEX})
+        message(FATAL_ERROR "CMakeHub modules index not found at: ${CMAKEHUB_MODULES_INDEX}")
+    endif()
+    
+    file(READ ${CMAKEHUB_MODULES_INDEX} index_content)
+    string(JSON modules_array GET "${index_content}" modules)
+    
+    string(JSON modules_length LENGTH "${modules_array}")
+    math(EXPR max_index "${modules_length} - 1")
+    
+    message(STATUS "")
+    message(STATUS "Available Modules (${modules_length}):")
+    message(STATUS "========================")
+    
+    foreach(index RANGE ${max_index})
+        string(JSON module_obj GET "${modules_array}" ${index})
+        string(JSON module_name GET "${module_obj}" name)
+        string(JSON module_desc GET "${module_obj}" description)
+        string(JSON module_cat GET "${module_obj}" category)
+        string(JSON module_lic GET "${module_obj}" license)
+        
+        message(STATUS "  ${module_name}")
+        message(STATUS "    Description: ${module_desc}")
+        message(STATUS "    Category: ${module_cat} | License: ${module_lic}")
+        message(STATUS "")
+    endforeach()
+endfunction()
+
+function(cmakehub_search search_term)
+    cmakehub_log(STATUS "Searching for modules matching: ${search_term}")
+    
+    if(NOT EXISTS ${CMAKEHUB_MODULES_INDEX})
+        message(FATAL_ERROR "CMakeHub modules index not found at: ${CMAKEHUB_MODULES_INDEX}")
+    endif()
+    
+    file(READ ${CMAKEHUB_MODULES_INDEX} index_content)
+    string(JSON modules_array GET "${index_content}" modules)
+    
+    string(JSON modules_length LENGTH "${modules_array}")
+    math(EXPR max_index "${modules_length} - 1")
+    
+    message(STATUS "")
+    message(STATUS "Search Results for '${search_term}':")
+    message(STATUS "=================================")
+    
+    set(found_count 0)
+    string(TOLOWER "${search_term}" search_lower)
+    
+    foreach(index RANGE ${max_index})
+        string(JSON module_obj GET "${modules_array}" ${index})
+        string(JSON module_name GET "${module_obj}" name)
+        string(JSON module_desc GET "${module_obj}" description)
+        string(JSON module_cat GET "${module_obj}" category)
+        string(JSON module_tags_json GET "${module_obj}" tags)
+        cmakehub_parse_list("${module_tags_json}" tags)
+        
+        # Search in name, description, category, and tags
+        string(TOLOWER "${module_name}" name_lower)
+        string(TOLOWER "${module_desc}" desc_lower)
+        string(TOLOWER "${module_cat}" cat_lower)
+        
+        set(matches FALSE)
+        if(name_lower MATCHES "${search_lower}" OR desc_lower MATCHES "${search_lower}" OR cat_lower MATCHES "${search_lower}")
+            set(matches TRUE)
+        endif()
+        
+        # Search in tags
+        if(NOT matches AND tags)
+            foreach(tag ${tags})
+                string(TOLOWER "${tag}" tag_lower)
+                if(tag_lower MATCHES "${search_lower}")
+                    set(matches TRUE)
+                    break()
+                endif()
+            endforeach()
+        endif()
+        
+        if(matches)
+            message(STATUS "  ${module_name}")
+            message(STATUS "    Description: ${module_desc}")
+            message(STATUS "    Category: ${module_cat}")
+            if(tags)
+                message(STATUS "    Tags: ${tags}")
+            endif()
+            message(STATUS "")
+            math(EXPR found_count "${found_count} + 1")
+        endif()
+    endforeach()
+    
+    if(found_count EQUAL 0)
+        message(STATUS "  No modules found matching '${search_term}'")
+    else()
+        message(STATUS "Found ${found_count} module(s)")
+    endif()
+endfunction()
+
+function(cmakehub_cache_clear module_name)
+    if(NOT DEFINED module_name OR module_name STREQUAL "")
+        # Clear all cache
+        cmakehub_log(STATUS "Clearing entire CMakeHub cache at: ${CMH_CACHE_DIR}")
+        if(EXISTS ${CMH_CACHE_DIR})
+            file(REMOVE_RECURSE ${CMH_CACHE_DIR})
+            message(STATUS "Cache cleared successfully")
+        else()
+            message(STATUS "Cache directory does not exist")
+        endif()
+    else()
+        # Clear specific module cache
+        cmakehub_log(STATUS "Clearing cache for module: ${module_name}")
+        set(module_cache_dir "${CMH_CACHE_DIR}/${module_name}")
+        if(EXISTS ${module_cache_dir})
+            file(REMOVE_RECURSE ${module_cache_dir})
+            message(STATUS "Cache for '${module_name}' cleared successfully")
+        else()
+            message(STATUS "No cache found for '${module_name}'")
+        endif()
+    endif()
+endfunction()
+
+function(cmakehub_cache_info)
+    cmakehub_log(STATUS "CMakeHub cache information:")
+    cmakehub_log(STATUS "  Cache directory: ${CMH_CACHE_DIR}")
+    
+    if(EXISTS ${CMH_CACHE_DIR})
+        file(GLOB_RECURSE cached_files "${CMH_CACHE_DIR}/*")
+        list(LENGTH cached_files total_files)
+        
+        # Calculate total size
+        set(total_size 0)
+        foreach(file ${cached_files})
+            file(SIZE ${file} file_size)
+            math(EXPR total_size "${total_size} + ${file_size}")
+        endforeach()
+        
+        # Convert to human readable
+        if(total_size GREATER 1073741824)
+            math(EXPR size_gb "${total_size} / 1073741824")
+            set(size_str "${size_gb} GB")
+        elseif(total_size GREATER 1048576)
+            math(EXPR size_mb "${total_size} / 1048576")
+            set(size_str "${size_mb} MB")
+        elseif(total_size GREATER 1024)
+            math(EXPR size_kb "${total_size} / 1024")
+            set(size_str "${size_kb} KB")
+        else()
+            set(size_str "${total_size} bytes")
+        endif()
+        
+        message(STATUS "  Cached modules:")
+        file(GLOB module_dirs "${CMH_CACHE_DIR}/*")
+        foreach(module_dir ${module_dirs})
+            if(IS_DIRECTORY ${module_dir})
+                get_filename_component(module_name ${module_dir} NAME)
+                message(STATUS "    - ${module_name}")
+            endif()
+        endforeach()
+        message(STATUS "  Total files: ${total_files}")
+        message(STATUS "  Total size: ${size_str}")
+    else()
+        message(STATUS "  Cache is empty")
+    endif()
+endfunction()
+
+function(cmakehub_dependency_graph output_file)
+    cmakehub_log(STATUS "Generating dependency graph...")
+    
+    get_property(used_modules GLOBAL PROPERTY CMAKEHUB_USED_MODULES)
+    
+    if(NOT used_modules)
+        message(STATUS "No modules loaded, dependency graph will be empty")
+    endif()
+    
+    # Generate DOT format graph
+    set(dot_content "digraph CMakeHub_Dependencies {\n")
+    set(dot_content "${dot_content}  rankdir=LR;\n")
+    set(dot_content "${dot_content}  node [shape=box];\n")
+    set(dot_content "${dot_content}  \"CMakeHub\" [style=filled, fillcolor=lightblue];\n\n")
+    
+    # Add all used modules
+    foreach(module_name ${used_modules})
+        cmakehub_get_module_info(${module_name} success)
+        if(success)
+            cmakehub_get_module_property(${module_name} category category)
+            set(dot_content "${dot_content}  \"${module_name}\" [category=\"${category}\"];\n")
+        endif()
+    endforeach()
+    
+    # Add dependencies
+    set(visited_modules "")
+    foreach(module_name ${used_modules})
+        if(NOT module_name IN_LIST visited_modules)
+            cmakehub_get_module_info(${module_name} success)
+            if(success)
+                cmakehub_get_module_property(${module_name} dependencies deps_json)
+                cmakehub_parse_list("${deps_json}" dependencies)
+                foreach(dep ${dependencies})
+                    set(dot_content "${dot_content}  \"${module_name}\" -> \"${dep}\";\n")
+                endforeach()
+                list(APPEND visited_modules ${module_name})
+            endif()
+        endif()
+    endforeach()
+    
+    set(dot_content "${dot_content}}\n")
+    
+    # Write to file
+    if(NOT DEFINED output_file OR output_file STREQUAL "")
+        set(output_file "${CMAKE_BINARY_DIR}/cmakehub_dependencies.dot")
+    endif()
+    
+    file(WRITE ${output_file} "${dot_content}")
+    message(STATUS "Dependency graph saved to: ${output_file}")
+    message(STATUS "To visualize, use: dot -Tpng ${output_file} -o dependencies.png")
+endfunction()
+
+function(cmakehub_update module_name)
+    cmakehub_log(STATUS "Checking for updates...")
+    
+    if(DEFINED module_name AND NOT module_name STREQUAL "")
+        # Update specific module
+        cmakehub_log(STATUS "Updating module: ${module_name}")
+        cmakehub_cache_clear(${module_name})
+        message(STATUS "Cache cleared. Module will be re-downloaded on next use.")
+    else()
+        # Update all used modules
+        get_property(used_modules GLOBAL PROPERTY CMAKEHUB_USED_MODULES)
+        if(used_modules)
+            message(STATUS "Clearing cache for all used modules...")
+            foreach(module_name ${used_modules})
+                cmakehub_cache_clear(${module_name})
+            endforeach()
+            message(STATUS "All modules will be re-downloaded on next use.")
+        else()
+            message(STATUS "No modules are currently in use")
+        endif()
+    endif()
+endfunction()
+
+function(cmakehub_check_compatibility module_name)
+    cmakehub_log(STATUS "Checking compatibility for: ${module_name}")
+    
+    cmakehub_get_module_info(${module_name} success)
+    if(NOT success)
+        message(FATAL_ERROR "Module '${module_name}' not found")
+    endif()
+    
+    cmakehub_get_module_property(${module_name} cmake_minimum_required cmake_min)
+    cmakehub_get_module_property(${module_name} cpp_minimum_required cpp_min)
+    
+    message(STATUS "Compatibility Check for ${module_name}:")
+    message(STATUS "==================================")
+    
+    # Check CMake version
+    message(STATUS "CMake Version:")
+    message(STATUS "  Required: ${cmake_min}")
+    message(STATUS "  Current:  ${CMAKE_VERSION}")
+    if(CMAKE_VERSION VERSION_GREATER_EQUAL cmake_min)
+        message(STATUS "  Status: ✓ Compatible")
+    else()
+        message(STATUS "  Status: ✗ Incompatible")
+    endif()
+    
+    message(STATUS "")
+    
+    # Check C++ version
+    message(STATUS "C++ Standard:")
+    message(STATUS "  Required: ${cpp_min}")
+    if(CMAKE_CXX_STANDARD)
+        message(STATUS "  Current:  C++${CMAKE_CXX_STANDARD}")
+        if(CMAKE_CXX_STANDARD GREATER_EQUAL cpp_min)
+            message(STATUS "  Status: ✓ Compatible")
+        else()
+            message(STATUS "  Status: ✗ Incompatible")
+        endif()
+    else()
+        message(STATUS "  Current:  Not set")
+        message(STATUS "  Status: ⚠ Unknown (CMAKE_CXX_STANDARD not set)")
+    endif()
+    
+    # Check platform compatibility
+    message(STATUS "")
+    message(STATUS "Platform:")
+    message(STATUS "  OS:       ${CMAKE_SYSTEM_NAME}")
+    message(STATUS "  Arch:     ${CMAKE_SYSTEM_PROCESSOR}")
+    message(STATUS "  Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 endfunction()
 
 # =============================================================================
