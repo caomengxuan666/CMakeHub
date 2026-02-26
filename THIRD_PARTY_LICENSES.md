@@ -6,11 +6,19 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 
 | License | Module Count |
 |---------|--------------|
+| Apache-2.0 | 2 |
 | BSD3 | 1 |
 | Boost | 3 |
-| MIT | 24 |
+| MIT | 36 |
 
 ## Detailed Module List
+
+### Apache-2.0
+
+| Module | Repository | Author |
+|--------|-----------|--------|
+| c_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
+| cpp_standards | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 
 ### BSD3
 
@@ -35,6 +43,7 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | clang_tidy_cg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | clang_tidy_tools | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | code_formatter | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
+| compile_options | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | compiler_warnings | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | component_install | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | conan | [https://github.com/conan-io/cmake-conan.git](https://github.com/conan-io/cmake-conan.git) | conan-io |
@@ -47,7 +56,18 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | dependency_graph | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | doxygen_helper | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | export_header | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_assimp | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_egl | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_ffmpeg | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_glesv2 | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_glew | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_gtk3 | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_gtk4 | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_hidapi | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| find_nodejs | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | find_or_build_gtest | [https://github.com/viaduck/cmake-modules.git](https://github.com/viaduck/cmake-modules.git) | viaduck |
+| find_sdl2 | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
+| gcov | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | git_version | [https://github.com/cginternals/cmake-init.git](https://github.com/cginternals/cmake-init.git) | cginternals |
 | glsl_shaders | [https://github.com/StableCoder/cmake-scripts.git](https://github.com/StableCoder/cmake-scripts.git) | StableCoder |
 | ios_toolchain | [https://github.com/leetal/ios-cmake.git](https://github.com/leetal/ios-cmake.git) | leetal |
