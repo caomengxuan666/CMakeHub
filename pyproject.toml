@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cmakehub"
-version = "0.1.5"
+version = "0.1.6"
 description = "CMakeHub - Unified CMake Module Manager CLI"
 readme = "README.md"
 authors = [{name = "CMakeHub Team", email = "caomengxuan666@github.com"}]
