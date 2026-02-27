@@ -133,7 +133,14 @@ def main():
     
     # Update version in pyproject.toml
     update_version(new_version)
-    
+
+    # Sync data files to CLI package
+    print("\n" + "=" * 80)
+    print("Syncing data files...")
+    print("=" * 80)
+
+    run_command("python scripts/sync_data.py")
+
     # Build locally to test
     if not args.skip_build:
         print("\n" + "=" * 80)

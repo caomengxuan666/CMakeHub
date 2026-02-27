@@ -1,0 +1,18 @@
+#!/bin/bash
+# Git pre-commit hook to check if data files are synced
+
+echo "Checking data files synchronization..."
+python scripts/check_sync.py
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Pre-commit check failed"
+    echo "Data files are out of sync. Please run:"
+    echo "  python scripts/sync_data.py"
+    echo ""
+    echo "To skip this check, use:"
+    echo "  git commit --no-verify"
+    exit 1
+fi
+
+echo "✅ Pre-commit check passed"

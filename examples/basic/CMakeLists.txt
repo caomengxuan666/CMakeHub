@@ -19,7 +19,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/hub/loader.cmake)
 cmakehub_use(sanitizers)
 
 # Enable code coverage
-cmakehub_use(coverage)
+#cmakehub_use(coverage)
 
 # Create a simple executable
 add_executable(${PROJECT_NAME} main.cpp)
@@ -46,6 +46,10 @@ if(COMMAND setup_target_for_coverage)
 else()
     message(WARNING "Coverage setup command not found. Coverage may not be properly configured.")
 endif()
+
+
+cmakehub_dependency_graph(dependencies.dot)
+
 
 # Print information about loaded modules
 message(STATUS "")

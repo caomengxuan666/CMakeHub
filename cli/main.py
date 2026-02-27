@@ -16,6 +16,7 @@ from commands import info as cmd_info
 from commands import cache as cmd_cache
 from commands import check as cmd_check
 from commands import update as cmd_update
+from commands import update_index as cmd_update_index
 from commands import use as cmd_use
 from commands import init as cmd_init
 
@@ -94,6 +95,12 @@ For more information, visit: https://github.com/caomengxuan666/CMakeHub
         "--download-now", action="store_true", help="Download module immediately"
     )
 
+    # Update-index command
+    update_index_parser = subparsers.add_parser("update-index", help="Update modules index from GitHub")
+    update_index_parser.add_argument(
+        "--local", "-l", action="store_true", help="Save to repository root (for development)"
+    )
+
     # Use command
     use_parser = subparsers.add_parser(
         "use", help="Generate CMake configuration for using a module"
@@ -131,6 +138,8 @@ For more information, visit: https://github.com/caomengxuan666/CMakeHub
             return cmd_check.check_compatibility(args)
         elif args.command == "update":
             return cmd_update.update_modules(args)
+        elif args.command == "update-index":
+            return cmd_update_index.update_index(args)
         elif args.command == "use":
             return cmd_use.use_module(args)
         elif args.command == "init":

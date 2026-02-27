@@ -765,6 +765,136 @@ function(cmakehub_cache_info)
     endif()
 endfunction()
 
+function(cmakehub_dependency_graph_all output_file)
+    # Generate dependency graph for ALL modules (not just loaded ones)
+    cmakehub_log(STATUS "Generating dependency graph for ALL modules...")
+    
+    # Read modules.json
+    if(NOT EXISTS ${CMAKEHUB_MODULES_INDEX})
+        message(FATAL_ERROR "Modules index not found: ${CMAKEHUB_MODULES_INDEX}")
+    endif()
+    
+    file(READ ${CMAKEHUB_MODULES_INDEX} index_content)
+    string(JSON modules_json GET ${index_content} modules)
+    
+    # Generate DOT format graph with category grouping
+    set(dot_content "digraph CMakeHub_Dependencies {\n")
+    set(dot_content "${dot_content}  rankdir=LR;\n")
+    set(dot_content "${dot_content}  splines=ortho;\n")
+    set(dot_content "${dot_content}  nodesep=0.5;\n")
+    set(dot_content "${dot_content}  ranksep=0.8;\n")
+    set(dot_content "${dot_content}  node [shape=box, fontsize=10, fontname=\"Arial\"];\n")
+    set(dot_content "${dot_content}  edge [fontsize=8, fontname=\"Arial\"];\n")
+    set(dot_content "${dot_content}  \"CMakeHub\" [style=filled, fillcolor=\"#ADD8E6\", fontsize=14, fontname=\"Arial\", shape=doublebox];\n\n")
+    
+    # Group modules by category
+    set(categories "")
+    set(modules_by_category "")
+    
+    # Parse all modules
+    string(JSON modules_count LENGTH ${modules_json})
+    math(EXPR max_index "${modules_count} - 1")
+    
+    foreach(idx RANGE ${max_index})
+        string(JSON module_json GET ${modules_json} ${idx})
+        string(JSON name GET ${module_json} name)
+        string(JSON category GET ${module_json} category)
+        
+        # Set default category
+        if("${category}" STREQUAL "")
+            set(category "unknown")
+        endif()
+        
+        # Color mapping
+        set(fillcolor "#D3D3D3")
+        if("${category}" STREQUAL "code_quality")
+            set(fillcolor "#90EE90")
+        elseif("${category}" STREQUAL "testing")
+            set(fillcolor "#E0FFFF")
+        elseif("${category}" STREQUAL "platform")
+            set(fillcolor "#FFFFE0")
+        elseif("${category}" STREQUAL "build_optimization")
+            set(fillcolor "#B0C4DE")
+        elseif("${category}" STREQUAL "debugging")
+            set(fillcolor "#DDA0DD")
+        elseif("${category}" STREQUAL "dependency")
+            set(fillcolor "#FAFAD2")
+        elseif("${category}" STREQUAL "docs")
+            set(fillcolor "#ADD8E6")
+        elseif("${category}" STREQUAL "packaging")
+            set(fillcolor "#20B2AA")
+        elseif("${category}" STREQUAL "utils")
+            set(fillcolor "#F5DEB3")
+        endif()
+        
+        # Add to category group
+        string(APPEND modules_by_category "${category}|${name}|${fillcolor}\n")
+        
+        # Add connection from CMakeHub to module
+        string(APPEND dot_content "  \"CMakeHub\" -> \"${name}\" [color=\"#666666\", penwidth=1.0];\n")
+    endforeach()
+    
+    # Create subgraphs for each category
+    # Parse modules_by_category and create groups
+    string(REPLACE "\n" ";" entries "${modules_by_category}")
+    
+    # Sort entries by category (first field)
+    list(SORT entries)
+    
+    set(current_category "")
+    set(has_open_subgraph FALSE)
+    
+    foreach(entry ${entries})
+        string(REPLACE "|" ";" parts ${entry})
+        list(GET parts 0 category)
+        list(GET parts 1 name)
+        list(GET parts 2 fillcolor)
+        
+        # Check if we need to close previous subgraph
+        if(NOT "${category}" STREQUAL "${current_category}" AND has_open_subgraph)
+            string(APPEND dot_content "  }\n\n")
+            set(has_open_subgraph FALSE)
+        endif()
+        
+        # Check if we need to create new subgraph
+        if(NOT "${category}" STREQUAL "${current_category}")
+            set(current_category "${category}")
+            
+            # Start new subgraph
+            string(APPEND dot_content "  subgraph cluster_${category} {\n")
+            string(APPEND dot_content "    label = \"${category}\";\n")
+            string(APPEND dot_content "    style=filled;\n")
+            string(APPEND dot_content "    fillcolor=\"${fillcolor}20\";\n")
+            string(APPEND dot_content "    color=\"${fillcolor}\";\n")
+            string(APPEND dot_content "    penwidth=2;\n")
+            string(APPEND dot_content "    fontsize=12;\n")
+            string(APPEND dot_content "    fontname=\"Arial\";\n")
+            string(APPEND dot_content "    rank=same;\n\n")
+            set(has_open_subgraph TRUE)
+        endif()
+        
+        # Add module node
+        string(APPEND dot_content "    \"${name}\" [style=filled, fillcolor=\"${fillcolor}\", fontsize=10, fontname=\"Arial\"];\n")
+    endforeach()
+    
+    # Close last subgraph if open
+    if(has_open_subgraph)
+        string(APPEND dot_content "  }\n")
+    endif()
+    
+    # Close digraph
+    string(APPEND dot_content "}\n")
+    
+    # Write to file
+    if(NOT DEFINED output_file OR output_file STREQUAL "")
+        set(output_file "${CMAKE_BINARY_DIR}/cmakehub_all_modules.dot")
+    endif()
+    
+    file(WRITE ${output_file} "${dot_content}")
+    message(STATUS "Dependency graph saved to: ${output_file}")
+    message(STATUS "To visualize, use: dot -Tpng ${output_file} -o dependencies.png")
+endfunction()
+
 function(cmakehub_dependency_graph output_file)
     cmakehub_log(STATUS "Generating dependency graph...")
     
@@ -786,10 +916,12 @@ function(cmakehub_dependency_graph output_file)
         if(success)
             cmakehub_get_module_property(${module_name} category category)
             set(dot_content "${dot_content}  \"${module_name}\" [category=\"${category}\"];\n")
+            # Add connection from CMakeHub to each module
+            set(dot_content "${dot_content}  \"CMakeHub\" -> \"${module_name}\";\n")
         endif()
     endforeach()
     
-    # Add dependencies
+    # Add dependencies between modules
     set(visited_modules "")
     foreach(module_name ${used_modules})
         if(NOT module_name IN_LIST visited_modules)
@@ -798,7 +930,10 @@ function(cmakehub_dependency_graph output_file)
                 cmakehub_get_module_property(${module_name} dependencies deps_json)
                 cmakehub_parse_list("${deps_json}" dependencies)
                 foreach(dep ${dependencies})
-                    set(dot_content "${dot_content}  \"${module_name}\" -> \"${dep}\";\n")
+                    # Only add dependency if both modules are in used_modules
+                    if(dep IN_LIST used_modules)
+                        set(dot_content "${dot_content}  \"${module_name}\" -> \"${dep}\" [style=dashed, color=gray];\n")
+                    endif()
                 endforeach()
                 list(APPEND visited_modules ${module_name})
             endif()

@@ -8,18 +8,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Include CMakeHub
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/hub/loader.cmake)
 
-# Example 1: Module with config parameters (配置穿透)
+# Example 1: Module with config parameters
 message(STATUS "=== Example 1: Config Parameters ===")
 cmakehub_use(sanitizers
     ADDRESS_SANITIZER ON
     UNDEFINED_SANITIZER ON
 )
 
-# Example 2: Module with specific version (版本选择)
+# Example 2: Module with specific version
 message(STATUS "=== Example 2: Version Selection ===")
 cmakehub_use(cotire VERSION "master")
 
-# Example 3: List all available modules (模块发现)
+# Example 3: List all available modules
 message(STATUS "=== Example 3: List All Modules ===")
 # cmakehub_list()  # Uncomment to see all modules
 

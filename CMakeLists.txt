@@ -14,6 +14,10 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/hub" ${CMAKE_MODULE_PATH})
 # Include CMakeHub loader for self-testing
 include(${CMAKE_SOURCE_DIR}/cmake/hub/loader.cmake)
 
+set(CMAKEHUB_VERBOSE ON)
+
+set(CMAKEHUB_VERSION_CHECK_MODE "STRICT")
+
 # Add subdirectories
 if(CMAKEHUB_BUILD_EXAMPLES)
     add_subdirectory(examples)

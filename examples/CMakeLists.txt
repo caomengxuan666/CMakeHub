@@ -5,3 +5,4 @@ cmake_minimum_required(VERSION 3.19)
 
 # Add basic example
 add_subdirectory(basic)
+add_subdirectory(all_modules)

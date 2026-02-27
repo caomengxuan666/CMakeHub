@@ -38,7 +38,7 @@ CMakeHub includes CMake modules from third-party repositories. Each module maint
 | Module | Repository | Author |
 |--------|-----------|--------|
 | compiler_info | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
-| launchers | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
+| launchers | [https://github.com/rpavlik/cmake-modules.git](https://github.com/ravlik/cmake-modules.git) | rpavlik |
 | use_folders | [https://github.com/rpavlik/cmake-modules.git](https://github.com/rpavlik/cmake-modules.git) | rpavlik |
 
 ### MIT
